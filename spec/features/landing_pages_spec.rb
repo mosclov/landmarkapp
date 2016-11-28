@@ -10,6 +10,9 @@ RSpec.feature "LandingPages", type: :feature do
       Then "I am welcomed" do
         expect(page).to have_content("Welcome!")
       end
+      Then "I can see mission statement" do
+        expect(page).to have_content("Welcome to The Landmark Locator, your one stop shop for FUN!! Here you can find interesting    places to go and things to do based on location and various amenities.")
+      end
     end
   end
 end
