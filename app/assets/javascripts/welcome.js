@@ -1,9 +1,7 @@
 $(document).ready(function(){
   handler = Gmaps.build('Google');
   handler.buildMap({
-      provider: {
-        // Todo: fix the default zoom on the map
-      },
+      provider: {},
       internal: {id: "map"}
     },
     function(){
@@ -24,5 +22,6 @@ $(document).ready(function(){
     ]);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
+    handler.getMap().setZoom(10);
   });
 });
