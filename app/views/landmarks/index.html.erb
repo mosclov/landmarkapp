@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Landmarks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Address</th>
+      <th>Criteria</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @landmarks.each do |landmark| %>
+      <tr>
+        <td><%= landmark.name %></td>
+        <td><%= landmark.description %></td>
+        <td><%= landmark.address %></td>
+        <td><%= landmark.criteria %></td>
+        <td><%= link_to 'Show', landmark %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :landmarks
   devise_for :users
   resources :users, only: [:show]
   root 'welcome#index'

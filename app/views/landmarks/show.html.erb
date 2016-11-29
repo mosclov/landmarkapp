@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @landmark.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @landmark.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @landmark.address %>
+</p>
+
+<p>
+  <strong>Criteria:</strong>
+  <%= @landmark.criteria %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @landmark.user.email %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_landmark_path(@landmark) %> |
+<%= link_to 'Back', landmarks_path %>
