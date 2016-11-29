@@ -10,6 +10,9 @@ RSpec.feature "LandingPages", type: :feature do
       Then "I am welcomed" do
         expect(page).to have_content("Welcome!")
       end
+      Then "I can see mission statement" do
+        expect(page).to have_content("Welcome to The Landmark Locator, your one stop shop for FUN!! Here you can find interesting    places to go and things to do based on location and various amenities.")
+      end
     end
   end
 
@@ -34,13 +37,19 @@ RSpec.feature "LandingPages", type: :feature do
       Then "I can sign up do" do
         click_button("Sign up")
       end
-      And "I am taken to the landing page" do
+      And "I am taken to my profile page" do
         expect(page).to have_content("Welcome! You have signed up successfully.")
       end
 
 
     end #steps
   end #context
+
+  context "Signing In" do
+    Steps "To sign in" do
+      Given "I am a registered user"
+    end#steps
+  end#context
 
   context "logging out" do
     Steps "To log out a logged in user" do
