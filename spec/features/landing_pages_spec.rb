@@ -13,6 +13,17 @@ RSpec.feature "LandingPages", type: :feature do
       Then "I can see mission statement" do
         expect(page).to have_content("Welcome to The Landmark Locator, your one stop shop for FUN!! Here you can find interesting    places to go and things to do based on location and various amenities.")
       end
-    end
-  end
-end
+    end #end of Steps
+  end #end of context
+
+  context "There is a map on the landing page" do
+    Steps "Going to the landing page" do
+      Given "I am on the landing page" do
+        visit "/"
+      end
+      Then "I can see a map" do
+        expect(page).to have
+      end
+    end #end of Steps
+  end #end of context
+end #end of RSpec
