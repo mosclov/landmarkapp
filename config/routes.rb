@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :reviews
   resources :landmarks do
     get 'map_locations', on: :collection
   end

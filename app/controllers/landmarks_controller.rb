@@ -28,6 +28,8 @@ end
   # GET /landmarks/1
   # GET /landmarks/1.json
   def show
+    @review = Review.new
+    @review.landmark = @landmark
   end
 
   # GET /landmarks/new
@@ -77,7 +79,7 @@ end
   def destroy
     @landmark.destroy
     respond_to do |format|
-      format.html { redirect_to landmarks_url, notice: 'Landmark was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Landmark was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -90,6 +92,10 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def landmark_params
-      params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id)
+      params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id, :image)
+    end
+
+    def review_params
+      params.require(:review).permit(:text, :landmark_id, :user_id)
     end
 end

@@ -25,8 +25,41 @@
   <%= @landmark.user.email %>
 </p>
 
+
+<p>
+  <%= link_to image_tag(@landmark.image.url(:large)), @landmark.image.url %>
+</p>
+
 <!-- <div id="map">Google Map will appear here...</div> -->
 
+<% if current_user %>
+<h3>Review this landmark!</h3>
+<%= render 'reviews/form' %>
+<% end %>
 
-<%= link_to 'Edit', edit_landmark_path(@landmark) %> |
+
+  <h3><strong>Reviews:</strong></h3>
+    <table class="table table-hover">
+      <% @landmark.reviews.each do |review| %>
+      <tr>
+        <td>
+          <!-- posting all reviews for that landmark -->
+          <h4><%= review.user.email %> said:</h4>
+            <%= review.text %>
+            <!-- you can delete your own reviews if logged in -->
+            <% if current_user && current_user.id == review.user.id %>
+              <%= link_to 'Delete review', review, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+
+
+
+
+
 <%= link_to 'Back', landmarks_path %>
+
+<hr>
+<!-- you can only add reviews if signed in -->
