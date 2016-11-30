@@ -6,3 +6,21 @@
 <hr>
 
 <a href="/landmarks/new">Create New Landmark!</a>
+
+<br>
+<hr>
+<br>
+
+<h3><u>My Landmarks</u></h3>
+<ul>
+  <% @user.landmarks.each do |landmark| %>
+    <li>
+      <strong><%= landmark.name %></strong> <br>
+      <%= landmark.description %> <br>
+      <%= landmark.address %> <br>
+      <%= link_to 'Show', landmark %>
+      <%= link_to 'Edit', landmark %>
+      <%= link_to 'Destroy', landmark %>
+    </li>
+  <% end %>
+</ul>

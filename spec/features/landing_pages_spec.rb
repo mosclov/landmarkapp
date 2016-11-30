@@ -164,14 +164,14 @@ RSpec.feature "LandingPages", type: :feature do
       Given "that I am on the landing page" do
         visit "/"
         click_on 'Sign Up'
-        fill_in 'Email', with: 'm@m.com'
-        fill_in 'Password', with: 'mrinalini'
-        fill_in 'Password confirmation', with: 'mrinalini'
+        fill_in 'user_email', with: 'm@m.com'
+        fill_in 'user_password', with: 'mrinalini'
+        fill_in 'user_password_confirmation', with: 'mrinalini'
         click_on 'Sign up'
         click_on "Create New Landmark"
-        fill_in "Name", with: "Cafe Chloe"
-        fill_in "Description", with: "Something"
-        fill_in "Address", with: "1550 Market St, San Diego CA"
+        fill_in "landmark_name", with: "Cafe Chloe"
+        fill_in "landmark_description", with: "Something"
+        fill_in "landmark_address", with: "1550 Market St, San Diego CA"
         click_on "Create Landmark"
         click_link "Sign Out"
       end
@@ -206,14 +206,14 @@ RSpec.feature "LandingPages", type: :feature do
       Given "that I am a registered, logged in user" do
         visit "/"
         click_on 'Sign Up'
-        fill_in 'Email', with: 'm@m.com'
-        fill_in 'Password', with: 'mrinalini'
-        fill_in 'Password confirmation', with: 'mrinalini'
+        fill_in 'user_email', with: 'm@m.com'
+        fill_in 'user_password', with: 'mrinalini'
+        fill_in 'user_password_confirmation', with: 'mrinalini'
         click_on 'Sign up'
         click_on "Create New Landmark"
-        fill_in "Name", with: "Cafe Chloe"
-        fill_in "Description", with: "Something"
-        fill_in "Address", with: "1550 Market St, San Diego CA"
+        fill_in "landmark_name", with: "Cafe Chloe"
+        fill_in "landmark_description", with: "Something"
+        fill_in "landmark_address", with: "1550 Market St, San Diego CA"
         click_on "Create Landmark"
       end
       Then "I can click on my profile link" do
