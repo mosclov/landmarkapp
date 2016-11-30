@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "CreateLandmarks", type: :feature do
-  skip context 'creating a new landmark' do
+   context 'creating a new landmark' do
     Steps 'To log in and upload a new landmark' do
       Given 'I am on the landing page' do
         visit '/'
@@ -19,11 +19,11 @@ RSpec.feature "CreateLandmarks", type: :feature do
         fill_in "Name", with: "Cafe Chloe"
         fill_in "Description", with: "Something"
         fill_in "Address", with: "1550 Market St, San Diego CA"
-        click_on "Create landmark"
+        click_on "Create Landmark"
       end
       And "I can see all my landmarks" do
         click_on "Back"
-        ecpect(page).to have_content("Cafe Chloe")
+        expect(page).to have_content("Cafe Chloe")
       end
     end #end of steps
   end # end of context

@@ -159,5 +159,70 @@ RSpec.feature "LandingPages", type: :feature do
 
   end#context
 
+  context "Viewing the website landmarks" do
+    Steps "to view the landmarks" do
+      Given "that I am on the landing page" do
+        visit "/"
+        click_on 'Sign Up'
+        fill_in 'Email', with: 'm@m.com'
+        fill_in 'Password', with: 'mrinalini'
+        fill_in 'Password confirmation', with: 'mrinalini'
+        click_on 'Sign up'
+        click_on "Create New Landmark"
+        fill_in "Name", with: "Cafe Chloe"
+        fill_in "Description", with: "Something"
+        fill_in "Address", with: "1550 Market St, San Diego CA"
+        click_on "Create Landmark"
+        click_link "Sign Out"
+      end
+      And "I can click on the listings button" do
+        click_link "Listings"
+      end
+      Then "I am taken to a page with the listing of the landmarks" do
+        expect(page).to have_content "Listing Landmarks"
+        expect(page).to have_content "Cafe Chloe"
+        expect(page).to have_content "Something"
+      end
+    end #steps
+  end #context
+  context "returning to the Landing Page" do
+    Steps "to return to the landing page" do
+      Given "I am not on the landing page" do
+        visit "/"
+        click_link "Listings"
+      end
+      And "I can click on a 'LandMark' link" do
+        click_link "LandMark"
+      end
+      Then "I am to taken to the landing page" do
+        expect(page).to have_content "Welcome"
+      end
+
+    end #Steps
+
+  end #context
+  context "Going to my profile page" do
+    Steps "to revisit my profile page" do
+      Given "that I am a registered, logged in user" do
+        visit "/"
+        click_on 'Sign Up'
+        fill_in 'Email', with: 'm@m.com'
+        fill_in 'Password', with: 'mrinalini'
+        fill_in 'Password confirmation', with: 'mrinalini'
+        click_on 'Sign up'
+        click_on "Create New Landmark"
+        fill_in "Name", with: "Cafe Chloe"
+        fill_in "Description", with: "Something"
+        fill_in "Address", with: "1550 Market St, San Diego CA"
+        click_on "Create Landmark"
+      end
+      Then "I can click on my profile link" do
+        click_link "myProfile"
+      end
+      And "I am taken back to my profile" do
+        expect(page).to have_content "m@m.com"
+      end
+    end#Steps
+  end#context
 
 end #feature
