@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user.id != current_user.id
+      flash[:alert] = "Can't go into others profile!"
       redirect_to '/'
     end
   end

@@ -80,9 +80,17 @@
 </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
 </nav>
+  <% if notice.present? %>
+  <aside class="alert alert-info">
+    <%= notice %>
+  </aside>
+  <% end %>
+  <% if alert.present? %>
+  <aside class="alert alert-danger">
+    <%= alert %>
+  </aside>
+  <% end %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
 <%= yield %>
 

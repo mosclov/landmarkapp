@@ -5,22 +5,25 @@
 <br>
 <hr>
 
-<a href="/landmarks/new">Create New Landmark!</a>
+
+<a type="button" name="button" href="/landmarks/new" class="btn btn-primary">Create New Landmark!</a>
 
 <br>
 <hr>
 <br>
 
 <h3><u>My Landmarks</u></h3>
-<ul>
+<table class="table table-hover">
   <% @user.landmarks.each do |landmark| %>
-    <li>
-      <strong><%= landmark.name %></strong> <br>
+<tr>
+  <td>
+      <h4><strong><%= landmark.name %></strong></h4> 
+      <h6><%= landmark.address %></h6>
       <%= landmark.description %> <br>
-      <%= landmark.address %> <br>
       <%= link_to 'Show', landmark %> |
       <%= link_to 'Edit', edit_landmark_path(landmark) %> |
       <%= link_to 'Destroy', landmark %>
-    </li>
   <% end %>
-</ul>
+</td>
+</tr>
+</table>

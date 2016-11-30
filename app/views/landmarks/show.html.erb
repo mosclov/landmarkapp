@@ -25,14 +25,21 @@
   <%= @landmark.user.email %>
 </p>
 
-<p>
-  <strong id="review_list">Reviews:</strong>
-  <ul>
-    <% @landmark.reviews.each do |review| %>
-      <li><%= review.text %></li>
-    <% end %>
-  </ul>
-</p>
+
+  <h3><strong>Reviews:</strong></h3>
+    <table class="table table-hover">
+      <% @landmark.reviews.each do |review| %>
+      <tr>
+        <td>
+          <h4><%= review.user.email %> said:</h4> 
+          <%= review.text %>
+      <% end %>
+        </td>
+      </tr>
+
+    </table>
+
+
 
 
 <%= link_to 'Back', landmarks_path %>
