@@ -7,6 +7,16 @@ class LandmarksController < ApplicationController
     @landmarks = Landmark.all
   end
 
+  def map_locations
+  @landmark = Landmark.all
+  @hash = Gmaps4rails.build_markers(@landmark) do |landmark, marker|
+    marker.lat(landmark.latitude)
+    marker.lng(landmark.longitude)
+    marker.infowindow("<em>" + landmark.address + "</em>")
+  end
+  render json: @hash.to_json
+end
+
   # GET /landmarks/1
   # GET /landmarks/1.json
   def show
