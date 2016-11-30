@@ -25,6 +25,10 @@
   <%= @landmark.user.email %>
 </p>
 
+<p>
+  <%= link_to image_tag(@landmark.image.url(:large)), @landmark.image.url %>
+</p>
+
 
 
 <%= link_to 'Edit', edit_landmark_path(@landmark) %> |
