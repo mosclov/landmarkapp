@@ -25,7 +25,20 @@
   <%= @landmark.user.email %>
 </p>
 
+<p>
+  <strong id="review_list">Reviews:</strong>
+  <ul>
+    <% @landmark.reviews.each do |review| %>
+      <li><%= review.text %></li>
+    <% end %>
+  </ul>
+</p>
 
 
-<%= link_to 'Edit', edit_landmark_path(@landmark) %> |
 <%= link_to 'Back', landmarks_path %>
+
+<hr>
+
+<h3>Review this landmark!</h3>
+
+<%= render 'reviews/form' %>

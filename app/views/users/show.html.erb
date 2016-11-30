@@ -18,8 +18,8 @@
       <strong><%= landmark.name %></strong> <br>
       <%= landmark.description %> <br>
       <%= landmark.address %> <br>
-      <%= link_to 'Show', landmark %>
-      <%= link_to 'Edit', landmark %>
+      <%= link_to 'Show', landmark %> |
+      <%= link_to 'Edit', edit_landmark_path(landmark) %> |
       <%= link_to 'Destroy', landmark %>
     </li>
   <% end %>
