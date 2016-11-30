@@ -7,9 +7,21 @@ class LandmarksController < ApplicationController
     @landmarks = Landmark.all
   end
 
+  def map_locations
+  @landmark = Landmark.all
+  @hash = Gmaps4rails.build_markers(@landmark) do |landmark, marker|
+    marker.lat(landmark.latitude)
+    marker.lng(landmark.longitude)
+    marker.infowindow("<em>" + landmark.address + "</em>")
+  end
+  render json: @hash.to_json
+end
+
   # GET /landmarks/1
   # GET /landmarks/1.json
   def show
+    @review = Review.new
+    @review.landmark = @landmark
   end
 
   # GET /landmarks/new
@@ -59,7 +71,7 @@ class LandmarksController < ApplicationController
   def destroy
     @landmark.destroy
     respond_to do |format|
-      format.html { redirect_to landmarks_url, notice: 'Landmark was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Landmark was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,5 +85,9 @@ class LandmarksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def landmark_params
       params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id, :image)
+    end
+
+    def review_params
+      params.require(:review).permit(:text, :landmark_id, :user_id)
     end
 end
