@@ -29,6 +29,12 @@ RSpec.feature "CreateLandmarks", type: :feature do
         expect(page).to have_content("Edit")
 
       end
+
+      And "I can alter my uploaded landmarks" do
+        expect(page).to have_content("Show")
+        expect(page).to have_content("Edit")
+        expect(page).to have_content("Destroy")
+      end
     end #end of steps
   end # end of context
 end
