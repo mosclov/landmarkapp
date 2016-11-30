@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    redirect_to '/'
   end
 
   # GET /reviews/1
@@ -56,11 +56,11 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
-    @review = Review.find(params[:id])
-    @landmark = @review.landmark
+    # @review = Review.find(params[:id])
+    # @landmark = @review.landmark
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

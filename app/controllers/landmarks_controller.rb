@@ -71,7 +71,7 @@ end
   def destroy
     @landmark.destroy
     respond_to do |format|
-      format.html { redirect_to landmarks_url, notice: 'Landmark was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Landmark was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

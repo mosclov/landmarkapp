@@ -1,5 +1,5 @@
 
-<%= @user.email %>
+<h2>Welcome <%= @user.email %></h2>
 
 <br>
 <br>
@@ -17,12 +17,12 @@
   <% @user.landmarks.each do |landmark| %>
 <tr>
   <td>
-      <h4><strong><%= landmark.name %></strong></h4> 
+      <h4><strong><%= landmark.name %></strong></h4>
       <h6><%= landmark.address %></h6>
       <%= landmark.description %> <br>
       <%= link_to 'Show', landmark %> |
       <%= link_to 'Edit', edit_landmark_path(landmark) %> |
-      <%= link_to 'Destroy', landmark %>
+      <%= link_to 'Destroy', landmark, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 </td>
 </tr>
