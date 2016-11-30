@@ -17,6 +17,9 @@
   <% @user.landmarks.each do |landmark| %>
 <tr>
   <td>
+      <% if landmark.image? %>
+        <%= image_tag landmark.image, :size => "150x100" %>
+      <% end %>
       <h4><strong><%= landmark.name %></strong></h4>
       <h6><%= landmark.address %></h6>
       <%= landmark.description %> <br>

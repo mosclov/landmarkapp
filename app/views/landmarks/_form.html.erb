@@ -1,4 +1,4 @@
-<%= form_for(@landmark) do |f| %>
+<%= form_for @landmark, html: { multipart: true } do |f| %>
   <% if @landmark.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@landmark.errors.count, "error") %> prohibited this landmark from being saved:</h2>
@@ -26,6 +26,10 @@
   <div class="field">
     <%= f.label :criteria %><br>
     <%= f.text_field :criteria %>
+  </div>
+  <div class="field">
+    <%= f.file_field :image %>
+
   </div>
   <div class="field">
     <input type="hidden" name="landmark[user_id]" value="<%= current_user.id%>" />

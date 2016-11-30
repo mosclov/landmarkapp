@@ -84,7 +84,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def landmark_params
-      params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id)
+      params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id, :image)
     end
 
     def review_params

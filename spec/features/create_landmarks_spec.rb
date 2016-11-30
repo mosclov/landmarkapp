@@ -8,21 +8,25 @@ RSpec.feature "CreateLandmarks", type: :feature do
       Given 'I am on the landing page' do
         visit '/'
         click_on 'Sign Up'
-        fill_in 'Email', with: 'm@m.com'
-        fill_in 'Password', with: 'mrinalini'
-        fill_in 'Password confirmation', with: 'mrinalini'
+        fill_in 'user_email', with: 'm@m.com'
+        fill_in 'user_password', with: 'mrinalini'
+        fill_in 'user_password_confirmation', with: 'mrinalini'
         click_on 'Sign up'
       end
       And 'I am taken to my profile where I can see a button' do
         expect(page).to have_content('m@m.com')
         click_on "Create New Landmark"
       end
-      Then 'I can fill out a form to create a new landmark' do
-        fill_in "Name", with: "Cafe Chloe"
-        fill_in "Description", with: "Something"
-        fill_in "Address", with: "1550 Market St, San Diego CA"
+      Then 'I can fill out a form to create a new landmark with image' do
+        fill_in "landmark_name", with: "Cafe Chloe"
+        fill_in "landmark_description", with: "Something"
+        fill_in "landmark_address", with: "1550 Market St, San Diego CA"
+        fill_in "landmark_criteria", with: "Test criteria"
+        attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
+
         click_on "Create Landmark"
       end
+
       #TODO
       # WILL TEST AFTER MY PROFILE LINK HAS BEEN ADDED TO NAVBAR
       And "I can see all my landmarks" do
@@ -41,4 +45,7 @@ RSpec.feature "CreateLandmarks", type: :feature do
       end
     end #end of steps
   end # end of context
+
+
+
 end
