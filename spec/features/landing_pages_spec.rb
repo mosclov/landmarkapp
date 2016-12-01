@@ -185,6 +185,11 @@ RSpec.feature "LandingPages", type: :feature do
         expect(page).to have_content "Cafe Chloe"
         expect(page).to have_content "Something"
       end
+      #Testing for landmarks list on welcome page next to map BY MRIN
+      And "I can see the landmark listings on the landing page too" do
+        visit '/'
+        expect(page).to have_content("Cafe Chloe")
+      end
     end #steps
   end #context
   context "returning to the Landing Page" do

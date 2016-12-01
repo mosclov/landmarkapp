@@ -18,7 +18,10 @@ RSpec.feature "Reviews", type: :feature do
         fill_in "Name", with: "Cafe Chloe"
         fill_in "Description", with: "Something"
         fill_in "Address", with: "1550 Market St, San Diego CA"
-        click_on "Create Landmark"
+        attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
+        expect{
+          click_button 'Create Landmark'
+        }.to change(Landmark, :count).by(1)
       end
 
       Then "I can go to the listings page with all landmarks" do

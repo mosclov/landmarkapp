@@ -20,6 +20,37 @@
 
 <hr>
 
-<div id="map">Google Map will appear here...</div>
+<div class="row">
 
-<hr/>
+  <div class="col-md-6">
+     <div id="map">Google Map will appear here...</div>
+  </div>
+
+  <div class="col-md-6">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Criteria</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @landmarks.each do |landmark| %>
+          <tr>
+            <td>
+              <a href="/landmarks/<%= landmark.id.to_s %>" >
+                <%= landmark.name %>
+              </a>
+            </td>
+          <td><%= landmark.address %></td>
+          <td><%= landmark.criteria %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  </div>
+</div>
