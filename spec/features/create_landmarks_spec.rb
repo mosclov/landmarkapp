@@ -33,14 +33,13 @@ RSpec.feature "CreateLandmarks", type: :feature do
 
         visit '/users/' + User.first.id.to_s
         expect(page).to have_content("Cafe Chloe")
-        expect(page).to have_content("Edit")
+        expect(page).to have_button("Edit")
 
       end
 
       And "I can alter my uploaded landmarks" do
-        expect(page).to have_content("Show")
-        expect(page).to have_content("Edit")
-        expect(page).to have_content("Destroy")
+        expect(page).to have_button("Edit")
+        expect(page).to have_button("Delete")
 
       end
     end #end of steps
