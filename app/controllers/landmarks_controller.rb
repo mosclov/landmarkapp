@@ -19,6 +19,11 @@ class LandmarksController < ApplicationController
     else
       marker.lat(landmark.latitude)
       marker.lng(landmark.longitude)
+      marker.picture({
+        :url => ActionController::Base.helpers.asset_path('map-icon.png'),
+        :height => 36,
+        :width => 36
+        });
       marker.infowindow("<em>" + landmark.address + "</em>")
     end
   end
