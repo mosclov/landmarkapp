@@ -231,5 +231,28 @@ RSpec.feature "LandingPages", type: :feature do
       end
     end#Steps
   end#context
+  # context "getting map data" do
+  #   Steps "check that a given landmark is in the list" do
+  #     Given "I can see icons on the map" do
+  #       visit "/"
+  #       click_on 'Sign Up'
+  #       fill_in 'user_email', with: 'a@a.a'
+  #       fill_in 'user_password', with: 'andrew'
+  #       fill_in 'user_password_confirmation', with: 'andrew'
+  #       click_on 'Sign up'
+  #       click_on "Create New Landmark"
+  #       fill_in "landmark_name", with: "LEARN Sucka"
+  #       fill_in "landmark_description", with: "Something"
+  #       fill_in "landmark_address", with: "1550 Market St, San Diego CA"
+  #       click_on "Create Landmark"
+  #     end
+  #     Then "My land mark is verified to be in json format" do
+  #       visit "/landmarks/map_locations"
+  #       expect(page).to have_content "LEARN Sucka"
+  #     end
+  #   
+  #   end
+  #
+  # end
 
 end #feature

@@ -15,7 +15,7 @@ class LandmarksController < ApplicationController
     if landmark.longitude.nil? || landmark.latitude.nil?
       marker.lat(-1)
       marker.lng(-1)
-      marker.infowindow("<em>" + landmark.address + "</em>")
+      marker.infowindow("<em>" + landmark.name + landmark.address + "</em>")
     else
       marker.lat(landmark.latitude)
       marker.lng(landmark.longitude)
@@ -24,7 +24,8 @@ class LandmarksController < ApplicationController
         :height => 36,
         :width => 36
         });
-      marker.infowindow("<em>" + landmark.address + "</em>")
+      marker.infowindow("<em>" + ActionController::Base.helpers.link_to(ActionController::Base.helpers.image_tag(landmark.image.url(:large)), landmark.image.url) + "<br>"+ landmark.name + "
+      <br> " + landmark.address + "<br> " + "<a href='/landmarks/#{landmark.id.to_s}'>" "Show More...</a></em>")
     end
   end
   render json: @hash.to_json
