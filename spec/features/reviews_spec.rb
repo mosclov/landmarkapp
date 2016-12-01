@@ -30,7 +30,7 @@ RSpec.feature "Reviews", type: :feature do
       end
 
       And "I can leave a review for the landmark that I click on" do
-        click_on "Show"
+        find(".list-group-item").click
         fill_in "review[text]", with: "My first landmark was awesome"
         click_on "Create Review"
       end
