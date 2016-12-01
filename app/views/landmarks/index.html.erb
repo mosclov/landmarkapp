@@ -1,30 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Landmarks</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Address</th>
-      <th>Criteria</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @landmarks.each do |landmark| %>
-      <tr>
-        <td><%= landmark.name %></td>
-        <td><%= landmark.description %></td>
-        <td><%= landmark.address %></td>
-        <td><%= landmark.criteria %></td>
-        <td><%= link_to 'Show', landmark %></td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <br>
+<div class="list-group">
+  <% @landmarks.each do |landmark| %>
+  <a href="/landmarks/<%= landmark.id.to_s %>" class="list-group-item list-group-item-action clearfix">
+    <h3 class="list-group-item-heading"><%= landmark.name %></h3>
+    <small><%= landmark.address %></small><br><br>
+    <div class="row">
+      <div class="col-md-2">
+    <% if landmark.image? %>
+        <%= image_tag landmark.image, :size => "150x100" %>
+    <% end %>
+      </div>
+      <div class="col-md-4 giveMeEllipsis">
+        <%= landmark.description %>
+      </div>
+    </div>
+  </a>
+</br>
+  <% end %>
+</div>

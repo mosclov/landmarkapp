@@ -45,8 +45,16 @@
                 <%= landmark.name %>
               </a>
             </td>
-          <td><%= landmark.address %></td>
-          <td><%= landmark.criteria %></td>
+          <td>
+            <a href="/landmarks/<%= landmark.id.to_s %>" >
+            <%= landmark.address %>
+              </a>
+          </td>
+          <td>
+            <a href="/landmarks/<%= landmark.id.to_s %>" >
+            <%= landmark.criteria %>
+            </a>
+          </td>
         </tr>
       <% end %>
     </tbody>

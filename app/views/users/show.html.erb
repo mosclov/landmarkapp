@@ -1,32 +1,39 @@
 
 <h2>Welcome <%= @user.email %></h2>
-
-<br>
 <br>
 <hr>
-
-
-<a type="button" name="button" href="/landmarks/new" class="btn btn-primary">Create New Landmark!</a>
-
+<h3>Landmarks Fun Facts:</h3>
+<em><p class="quote"></p></em>
 <br>
 <hr>
 <br>
+<br>
+  <h2 class="btnmar"><u>My Landmarks</u></h2>
+    <a type="button" name="button" href="/landmarks/new" class="btn btn-primary text-right btn1">Create New Landmark!</a>
+<br>
+<br>
 
-<h3><u>My Landmarks</u></h3>
-<table class="table table-hover">
+
+<div class="list-group">
   <% @user.landmarks.each do |landmark| %>
-<tr>
-  <td>
-      <% if landmark.image? %>
+  <a href="/landmarks/<%= landmark.id.to_s %>" class="list-group-item list-group-item-action clearfix">
+    <h3 class="list-group-item-heading"><%= landmark.name %></h3>
+    <small><%= landmark.address %></small><br><br>
+    <div class="row">
+      <div class="col-md-2">
+    <% if landmark.image? %>
         <%= image_tag landmark.image, :size => "150x100" %>
-      <% end %>
-      <h4><strong><%= landmark.name %></strong></h4>
-      <h6><%= landmark.address %></h6>
-      <%= landmark.description %> <br>
-      <%= link_to 'Show', landmark %> |
-      <%= link_to 'Edit', edit_landmark_path(landmark) %> |
-      <%= link_to 'Destroy', landmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+      </div>
+      <div class="col-md-4 giveMeEllipsis">
+        <%= landmark.description %>
+      </div>
+      <div class="pull-right btn-group">
+        <%= button_to 'Edit', edit_landmark_path(landmark), class: "btn btn-default custom", method: :get %> </br>
+        <%= button_to 'Delete', landmark, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default custom" %>
+      </div>
+    </div>
+  </a>
+  <br>
   <% end %>
-</td>
-</tr>
-</table>
+</div>
