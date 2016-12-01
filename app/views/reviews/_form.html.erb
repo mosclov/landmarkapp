@@ -11,14 +11,14 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.text_area :text %>
-  </div>
+  <textarea class="form-control" rows="3" type="text_area" name="review[text]">
+
+  </textarea>
   <div class="field">
     <input type="hidden" name="review[landmark_id]" value="<%= @review.landmark.id %>">
     <input type="hidden" name="review[user_id]" value="<%= current_user.id %>">
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </div><br>
+  <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+         Create Review
+  <% end %>
 <% end %>
