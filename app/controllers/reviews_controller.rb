@@ -27,14 +27,18 @@ class ReviewsController < ApplicationController
   def create
     # @landmark = Landmark.find(params[:id])
     @review = Review.new(review_params)
-
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to '/landmarks/'+ @review.landmark.id.to_s, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+    if @review.text.strip.empty?
+      flash[:alert] = "Review cannot be blank!"
+      redirect_to '/landmarks/'+ @review.landmark.id.to_s
+    else
+      respond_to do |format|
+        if @review.save
+          format.html { redirect_to '/landmarks/'+ @review.landmark.id.to_s, notice: 'Review was successfully created.' }
+          format.json { render :show, status: :created, location: @review }
+        else
+          format.html { render :new }
+          format.json { render json: @review.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
