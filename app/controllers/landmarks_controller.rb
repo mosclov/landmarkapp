@@ -50,7 +50,7 @@ end
   # GET /landmarks/1.json
   def show
     @review = Review.new
-    # @review.landmark = @landmark
+    @review.landmark = @landmark
   end
 
   # GET /landmarks/new
