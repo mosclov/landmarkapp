@@ -31,11 +31,26 @@ class LandmarksController < ApplicationController
   render json: @hash.to_json
 end
 
+  def map_location
+  @landmark = Landmark.find(params[:id])
+  @hash = Gmaps4rails.build_markers(@landmark) do |landmark, marker|
+      marker.lat(landmark.latitude)
+      marker.lng(landmark.longitude)
+      marker.picture({
+        :url => ActionController::Base.helpers.asset_path('map-icon.png'),
+        :height => 36,
+        :width => 36
+        });
+      marker.infowindow("<em>" + landmark.address + "</em>")
+    end
+    render json: @hash.to_json
+  end
+
   # GET /landmarks/1
   # GET /landmarks/1.json
   def show
     @review = Review.new
-    @review.landmark = @landmark
+    # @review.landmark = @landmark
   end
 
   # GET /landmarks/new
