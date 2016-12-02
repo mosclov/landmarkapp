@@ -1,16 +1,31 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_user, only: [:show, :destroyils]
+  before_action :authenticate_user!, only: [:index, :edit,
+                                    :update, :destroy, :following, :followers]
+  before_action :set_user, only: [:show, :destroy, :following, :followers]
+
 
 
   def show
     @user = User.find(params[:id])
     @landmark = Landmark.new
-    if @user.id != current_user.id
-      flash[:alert] = "Can't go into others profile!"
-      redirect_to '/'
-    end
+    # if @user.id != current_user.id
+    #   flash[:alert] = "Can't go into others profile!"
+    #   redirect_to '/'
+    # end
   end
+
+  def following
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(:page => params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(:page => params[:page])
+    render 'show_follow'
+  end
+
 
   private
     def set_user
@@ -20,4 +35,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation)
     end
+
 end

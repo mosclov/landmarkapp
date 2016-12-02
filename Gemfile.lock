@@ -46,6 +46,8 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
     builder (3.2.2)
     byebug (9.0.6)
     capybara (2.10.1)
@@ -79,6 +81,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.6.6)
+      i18n (~> 0.5)
     ffi (1.9.14)
     geocoder (1.4.0)
     globalid (0.3.7)
@@ -218,10 +222,12 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
+  bootstrap-will_paginate
   byebug
   capybara
   coffee-rails (~> 4.1.0)
   devise
+  faker
   geocoder
   gmaps4rails
   jbuilder (~> 2.0)
@@ -243,4 +249,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.12.0
+   1.12.5
