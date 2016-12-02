@@ -10,11 +10,15 @@ Rails.application.routes.draw do
       get 'map_location'
     end
   end
-  
-  devise_for :users
-  resources :users, only: [:show]
-  root 'welcome#index'
 
+  devise_for :users
+  resources :users, only: [:show, :index, :destroy] do
+    member do
+      get :following, :followers
+    end
+  end
+  root 'welcome#index'
+  resources :relationships,       only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

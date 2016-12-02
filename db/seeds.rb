@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+99.times do |i|
+  User.create!(
+    email: Faker::Internet.user_name + i.to_s + "@#{Faker::Internet.domain_name}",
+    password: 'password'
+  )
+end
+
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

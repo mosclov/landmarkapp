@@ -1,19 +1,31 @@
-<h2>Welcome <%= @user.email %></h2>
+
+<h2 class="welcome">
+<% if current_user == @user %>
+  Welcome
+ <% end %>
+<%= @user.email %></h2>
 <br>
+<br>
+<%= render 'stats' %>
+<br>
+<%= render 'follow_form' %>
 <hr>
-<h3>Landmarks Fun Facts:</h3>
-<em><p class="quote"></p></em>
-<br>
+<% if current_user == @user %>
+  <h3>Landmarks Fun Fact:</h3>
+  <em><p class="quote"></p></em>
+  <hr>
+<% end %>
 <div class="row">
   <div class="col-sm-12">
-    <hr>
     <!-- <h2 class="btnmar"><u>My Landmarks</u></h2>
     <a type="button" name="button" href="/landmarks/new" class="btn btn-primary text-right btn1">Create New Landmark!</a> -->
     <br>
       <ul class="nav nav-pills" role="tablist">
         <li role="presentation"class="active"><a href="#index" role="tab" data-toggle="tab">myLandmarks</a></li>
         <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">myFavorites</a></li>
+        <% if current_user == @user %>
         <li role="presentation"><a href="#createLandmark" role="tab" data-toggle="tab">Create New Landmark!</a></li>
+        <% end %>
       </ul>
       <div class="tab-content">
         <div role="tabpanel"  class="tab-pane in active" id="index">
@@ -31,10 +43,12 @@
                 <div class="col-md-4 giveMeEllipsis">
                   <%= landmark.description %>
                 </div>
+                <% if current_user == @user %>
                 <div class="pull-right btn-group">
                   <%= button_to 'Edit', edit_landmark_path(landmark), class: "btn btn-default custom", method: :get %> </br>
                   <%= button_to 'Delete', landmark, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default custom" %>
                 </div>
+                <% end %>
               </div>
             </a>
             <br>
@@ -44,9 +58,11 @@
         <div role="tabpanel" class="tab-pane" id="profile">
           <h1>Empty for now</h1>
         </div>
+        <% if current_user == @user %>
         <div role="tabpanel" class="tab-pane" id="createLandmark">
           <%= render 'landmarks/form' %>
         </div>
+        <% end %>
      </div> <!--end of tab content-->
   </div> <!--end column-->
 </div> <!--end row-->
