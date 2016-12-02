@@ -3,37 +3,29 @@
  <div class="row">
   <div class="col-md-4">
       <h1><%= @landmark.name %></h1>
-      <small>Uploaded by:
-      <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a></small><br>
+      <% if user_signed_in? %>
+        <small>Uploaded by:
+        <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a></small><br>
+      <% end %>
       <h6><%= @landmark.address %></h6>
-      <p>
-        <%= link_to image_tag(@landmark.image.url(:large)), @landmark.image.url %>
-      </p>
 
-      <h4>
-        <%= @landmark.description %>
-      </h4>
+      <p><%= link_to image_tag(@landmark.image.url(:large)), @landmark.image.url %></p>
 
-      <p>
-        <strong>Criteria:</strong>
-        <%= @landmark.criteria %>
-      </p>
+      <h4><%= @landmark.description %></h4>
+
+      <p> <strong>Criteria:</strong>
+        <%= @landmark.criteria %></p>
+
   </div>
   <div class="flow_r">
     <div id="map2" data-landmark-id="<%= @landmark.id%>">Google Map will appear here...</div>
   </div>
 </div>
 
-
-
-
-
-
 <% if current_user %>
   <h3>Review this landmark!</h3>
   <%= render 'reviews/form' %>
 <% end %>
-
 
   <h3><strong>Reviews:
     <% if !user_signed_in? %>
