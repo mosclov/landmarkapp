@@ -54,3 +54,9 @@ a:focus {
 .btn1 {
   float: right;
 }
+
+// Ensures that the addition of a scroll bar does not move nav bar or nav
+// pills on the myProfile page
+html {
+  overflow-y: scroll;
+}
