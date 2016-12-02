@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'underscore-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'omniauth-facebook'
 
 gem 'paperclip'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
