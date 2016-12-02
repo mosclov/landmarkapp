@@ -2,8 +2,15 @@ Rails.application.routes.draw do
 
   resources :reviews
   resources :landmarks do
-    get 'map_locations', on: :collection
+    collection do
+      get 'map_locations'
+    end
+
+    member do
+      get 'map_location'
+    end
   end
+  
   devise_for :users
   resources :users, only: [:show]
   root 'welcome#index'

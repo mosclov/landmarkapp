@@ -8,6 +8,16 @@
 #map label {
   width: auto; display:inline;
 }
+#map2 {
+  height: 500px;
+  width: 470px;
+}
+#map2 img {
+  max-width: none;
+}
+#map2 label {
+  width: auto; display:inline;
+}
 
 tr:hover {
    background: #F8F8FF;
