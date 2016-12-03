@@ -1,6 +1,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "welcome";
+ @import "users";
 
  #gpin {
    height: 50px;
@@ -11,6 +12,7 @@
 
  .navbar-brand {
    padding-right: 1px;
+   font-family: 'Questrial', sans-serif;
  }
  //   position: absolute;
  //   z-index: 1;

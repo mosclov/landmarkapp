@@ -1,3 +1,36 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+// .container {
+//   background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/3e/Paul_Guillemin.jpg"/>);
+// }
+//
+// #sign_in {
+//   background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/3e/Paul_Guillemin.jpg");
+//   background-repeat: no-repeat;
+//   height: 800px;
+// }\
+// body {
+//   background-image: url("BalboaPark.JPG");
+//   background-size: 50%;
+//   background-repeat: no-repeat;
+//   // background-position: center;
+//   height: 700px;
+//   width: 2000px;
+
+
+// }
+// url("BalboaPark.JPG");
+#sign_in {
+  margin-left: 160px;
+  background-image: url("BalboaPark.JPG");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 700px;
+}
+
+#login_block {
+  background-color: white;
+  margin-top: 10px;
+}
