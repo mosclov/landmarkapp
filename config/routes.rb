@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     member do
       get 'map_location'
     end
+    
+      resources :star_ratings, except: [:show, :index]
   end
 
   devise_for :users

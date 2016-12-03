@@ -51,6 +51,15 @@ end
   def show
     @review = Review.new
     @review.landmark = @landmark
+    @star_ratings = StarRating.where(landmark_id: @landmark)
+    @star_rating = StarRating.new
+
+    if @star_ratings.blank?
+      @avg_rating = 0
+    else
+      @avg_rating = @star_rating.average(:rating).round(2)
+    end
+
   end
 
   # GET /landmarks/new
@@ -113,7 +122,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def landmark_params
-      params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id, :image)
+      params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id, :image, :rating)
     end
 
     def review_params
