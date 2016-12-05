@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <div id="map3" style="width: 600px; height: 500px;" data-landmark-zipcode="<%= @zipcode %>">Google Map will appear here...</div>
+    </div>
+
+    <div class="col-md-2">
+    </div>
+
+
+    <div class="col-md-4">
+      <% @landmarks.each do |landmark| %>
+      <ul>
+        <li>
+          <h4><%= landmark.name %> </h4>
+          <%= landmark.address %> <br>
+          <%= landmark.description %>
+
+        </li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

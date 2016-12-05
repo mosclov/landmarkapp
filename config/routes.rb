@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'search/location_search'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users, only: [:show, :index, :destroy] do
     member do

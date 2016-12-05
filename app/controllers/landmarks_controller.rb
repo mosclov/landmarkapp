@@ -7,30 +7,55 @@ class LandmarksController < ApplicationController
     @landmarks = Landmark.all
   end
 
-
-
   def map_locations
-  @landmark = Landmark.all
-  @hash = Gmaps4rails.build_markers(@landmark) do |landmark, marker|
-    if landmark.longitude.nil? || landmark.latitude.nil?
-      marker.lat(-1)
-      marker.lng(-1)
-      marker.infowindow("<em>" + landmark.name + landmark.address + "</em>")
+    #if the user has entered a zipcode
+    if !params[:zipcode].nil?
+      zipcode = params[:zipcode]
+      #find all landmarks whose address has this zipcode and display them on the search page map
+      @landmarks = Landmark.where('address LIKE :address', address: "%#{zipcode}%" )
+      @hash = Gmaps4rails.build_markers(@landmarks) do |landmark, marker|
+        if landmark.longitude.nil? || landmark.latitude.nil?
+          marker.lat(-1)
+          marker.lng(-1)
+          marker.infowindow("<em>" + landmark.name + landmark.address + "</em>")
+        else
+          marker.lat(landmark.latitude)
+          marker.lng(landmark.longitude)
+          marker.picture({
+            :url => ActionController::Base.helpers.asset_path('map-icon.png'),
+            :height => 36,
+            :width => 36
+            });
+          marker.infowindow("<em>" + ActionController::Base.helpers.link_to(ActionController::Base.helpers.image_tag(landmark.image.url(:large)), landmark.image.url) + "<br>"+ landmark.name + "
+          <br> " + landmark.address + "<br> " + "<a href='/landmarks/#{landmark.id.to_s}'>" "Show More...</a></em>")
+        end
+      end
+      render json: @hash.to_json
+      #otherwise display all landmarks on the welcome page map.
     else
-      marker.lat(landmark.latitude)
-      marker.lng(landmark.longitude)
-      marker.picture({
-        :url => ActionController::Base.helpers.asset_path('map-icon.png'),
-        :height => 36,
-        :width => 36
-        });
-      marker.infowindow("<em>" + ActionController::Base.helpers.link_to(ActionController::Base.helpers.image_tag(landmark.image.url(:large)), landmark.image.url) + "<br>"+ landmark.name + "
-      <br> " + landmark.address + "<br> " + "<a href='/landmarks/#{landmark.id.to_s}'>" "Show More...</a></em>")
+      @landmark = Landmark.all
+      @hash = Gmaps4rails.build_markers(@landmark) do |landmark, marker|
+        if landmark.longitude.nil? || landmark.latitude.nil?
+          marker.lat(-1)
+          marker.lng(-1)
+          marker.infowindow("<em>" + landmark.name + landmark.address + "</em>")
+        else
+          marker.lat(landmark.latitude)
+          marker.lng(landmark.longitude)
+          marker.picture({
+            :url => ActionController::Base.helpers.asset_path('map-icon.png'),
+            :height => 36,
+            :width => 36
+            });
+          marker.infowindow("<em>" + ActionController::Base.helpers.link_to(ActionController::Base.helpers.image_tag(landmark.image.url(:large)), landmark.image.url) + "<br>"+ landmark.name + "
+          <br> " + landmark.address + "<br> " + "<a href='/landmarks/#{landmark.id.to_s}'>" "Show More...</a></em>")
+        end
+      end
+      render json: @hash.to_json
     end
-  end
-  render json: @hash.to_json
 end
 
+  #finds the location for a particular landmark by id
   def map_location
   @landmark = Landmark.find(params[:id])
   @hash = Gmaps4rails.build_markers(@landmark) do |landmark, marker|
