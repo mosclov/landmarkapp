@@ -9,6 +9,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Cinzel|Questrial" rel="stylesheet">
 </head>
 
 <body class="container">
@@ -36,7 +37,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="/landmarks">Listings</a></li>
                 <% if !user_signed_in? %>
-                <li><a href="/users/sign_in">Sign In<span class="sr-only">(current)</span></a></li>
+                <li><a href="/users/sign_in">Log In<span class="sr-only">(current)</span></a></li>
                 <li><a href="/users/sign_up"> Sign Up</a></li>
                 <% end %>
 

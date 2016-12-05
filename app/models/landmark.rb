@@ -18,5 +18,4 @@ class Landmark < ActiveRecord::Base
     end
   end
 
-
 end

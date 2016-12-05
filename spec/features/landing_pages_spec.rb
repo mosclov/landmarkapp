@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 RSpec.feature "LandingPages", type: :feature do
+  def sign_up_and_create_landmark_and_sign_out
+    click_link "Sign Up"
+    fill_in "user_email", with: "a@a.com"
+    fill_in "user_password", with: "asdfgh"
+    fill_in "user_password_confirmation", with: "asdfgh"
+    click_button("Sign up")
+    click_on "Create New Landmark"
+    fill_in "landmark_name", with: "Cafe Chloe"
+    fill_in "landmark_description", with: "Something"
+    fill_in "landmark_address", with: "1550 Market St, San Diego CA"
+    fill_in "landmark_criteria", with: "Test criteria"
+    attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
+    click_on "Create Landmark"
+    click_link "Sign Out"
+  end
+
   context "Landing page" do
     Steps "Going to landing page" do
       Given "I visit localhost 3000:" do
@@ -85,18 +101,18 @@ RSpec.feature "LandingPages", type: :feature do
         click_button("Sign up")
         click_link "Sign Out"
       end
-      Then "I can click the Sign In link" do
-        click_link "Sign In"
+      Then "I can click the Log In link" do
+        click_link "Log In"
       end
       Then "I am taken to the Log in page" do
-        expect(page).to have_content("Log in")
+        expect(page).to have_content("Log In")
       end
       And "I can fill out the email and password field" do
         fill_in "user_email", with: "a@a.com"
         fill_in "user_password", with: "asdfgh"
       end
       Then "I can log in" do
-        click_button "Log in"
+        click_button "Log In"
       end
       And "I am taken to my profile page displaying my email and a successful message" do
         expect(page).to have_content "a@a.com"
@@ -140,16 +156,16 @@ RSpec.feature "LandingPages", type: :feature do
         click_button("Sign up")
         click_link "Sign Out"
       end
-      Then "I can click the Sign In link" do
-        click_link "Sign In"
+      Then "I can click the Log In link" do
+        click_link "Log In"
       end
       Then "I am taken to the Log in page" do
-        expect(page).to have_content("Log in")
+        expect(page).to have_content("Log In")
       end
       And "I can fill out the email and password field" do
         fill_in "user_email", with: "a@a.com"
         fill_in "user_password", with: "asdfg"
-        click_button "Log in"
+        click_button "Log In"
       end
       Then "I can see an error message" do
         expect(page).to have_content "Invalid Email or password."
@@ -231,6 +247,43 @@ RSpec.feature "LandingPages", type: :feature do
       end
     end#Steps
   end#context
+  context "Searching for a landmark" do
+    Steps "to search for a landmark" do
+      Given "I am on the landing page and there are saved landmarks" do
+        visit "/"
+        sign_up_and_create_landmark_and_sign_out
+      end
+      Then "I can see a search form" do
+        expect(page).to have_selector("input[placeholder='Search']")
+      end
+      And "I can fill out the search" do
+        fill_in "search", with: "something"
+        click_on 'Submit'
+      end
+      Then "I am taking to a page with the matching landmarks" do
+        expect(page).to have_content('Cafe Chloe')
+      end
+
+    end#steps
+  end#context
+  context "Search for a landmark that does not exist" do
+    Steps "to search for a landmark that does not exist" do
+      Given "I am on the landing page and there are saved landmarks" do
+        visit "/"
+        sign_up_and_create_landmark_and_sign_out
+      end
+      Then "I can see a search form" do
+        expect(page).to have_selector("input[placeholder='Search']")
+      end
+      And "I can fill out the search" do
+        fill_in "search", with: "blah"
+        click_on 'Submit'
+      end
+      Then "I see a no matching landmarks flash message" do
+        expect(page).to have_content "Please try again."
+      end
+    end #Steps
+  end #context
   # context "getting map data" do
   #   Steps "check that a given landmark is in the list" do
   #     Given "I can see icons on the map" do
@@ -250,7 +303,7 @@ RSpec.feature "LandingPages", type: :feature do
   #       visit "/landmarks/map_locations"
   #       expect(page).to have_content "LEARN Sucka"
   #     end
-  #   
+  #
   #   end
   #
   # end

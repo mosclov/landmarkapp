@@ -115,6 +115,15 @@ end
     end
   end
 
+ #Textacular basic search for keywords in description attriute for landmarks
+  def search_results
+    @results = Landmark.basic_search(description: params[:search])
+    if @results.length == 0
+      flash[:alert] = 'No match found! Please try again.'
+      redirect_to '/'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_landmark
