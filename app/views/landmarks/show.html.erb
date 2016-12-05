@@ -44,19 +44,23 @@
     <% end %>
   </strong></h3>
     <table class="table table-hover">
-      <% @landmark.reviews.each do |review| %>
-      <tr>
-        <td>
-          <!-- posting all reviews for that landmark -->
-          <h4><%= review.user.email %> <small><%=review.user.created_at.strftime("%d %b %Y")%></small></h4>
-            <%= review.text %>
-            <!-- you can delete your own reviews if logged in -->
-            <% if current_user && current_user.id == review.user.id %>
-              <%= link_to 'Delete review', review, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-        </td>
-      </tr>
-    <% end %>
+      <% if @landmark.reviews.count == 0 %>
+        <em><h5>No reviews yet</h5></em>
+      <% else %>
+        <% @landmark.reviews.each do |review| %>
+        <tr>
+          <td>
+            <!-- posting all reviews for that landmark -->
+            <h4><%= review.user.email %> <small><%=review.user.created_at.strftime("%d %b %Y")%></small></h4>
+              <%= review.text %>
+              <!-- you can delete your own reviews if logged in -->
+              <% if current_user && current_user.id == review.user.id %>
+                <%= link_to 'Delete review', review, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+          </td>
+        </tr>
+        <% end %>
+    <% end%>
     </table>
 
 <%= link_to 'Back', landmarks_path %>
