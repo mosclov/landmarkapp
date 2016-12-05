@@ -12,13 +12,8 @@ class StarRatingsController < ApplicationController
 
   def create
     @star_rating = StarRating.new(star_rating_params)
-    if @star_ratings.nil?
-      flash[:alert] = 'Star Rating Cannot be Empty '
-      redirect_to :back
-    else
     @star_rating.user_id = current_user.id
     @star_rating.landmark_id = @landmark.id
-
     @landmark_ratings = StarRating.where(landmark_id: @landmark.id)
 
     # Check to see if user has already left a review for the landmark and
@@ -32,11 +27,11 @@ class StarRatingsController < ApplicationController
     if @star_rating.save
       redirect_to @landmark
     else
-      render 'new'
+      flash[:alert] = "Star rating cannot be blank"
+      redirect_to :back
     end
   end
 
-end
 
   def update
     @star_rating.update(star_rating_params)
