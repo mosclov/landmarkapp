@@ -1,4 +1,5 @@
 class Landmark < ActiveRecord::Base
+  has_many :star_ratings
   belongs_to :user
   has_many :reviews, dependent: :destroy
   validates :name, :address, presence: true
