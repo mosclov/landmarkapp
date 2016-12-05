@@ -13,6 +13,7 @@ $(document).ready(function() {
   r_text[10] = "New York's Central Park was opened in 1876";
   r_text[11] = "New York's Central Park was opened in 1876";
   r_text[12] = "Chuck Norris built the house he was born in";
+  r_text[12] = "Chuck Norris is not interested";
   randno = r_text[Math.floor( Math.random() * r_text.length )];
   $('.quote').text( randno );
 });

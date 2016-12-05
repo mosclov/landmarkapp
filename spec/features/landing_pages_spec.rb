@@ -85,18 +85,18 @@ RSpec.feature "LandingPages", type: :feature do
         click_button("Sign up")
         click_link "Sign Out"
       end
-      Then "I can click the Sign In link" do
-        click_link "Sign In"
+      Then "I can click the Log In link" do
+        click_link "Log In"
       end
       Then "I am taken to the Log in page" do
-        expect(page).to have_content("Log in")
+        expect(page).to have_content("Log In")
       end
       And "I can fill out the email and password field" do
         fill_in "user_email", with: "a@a.com"
         fill_in "user_password", with: "asdfgh"
       end
       Then "I can log in" do
-        click_button "Log in"
+        click_button "Log In"
       end
       And "I am taken to my profile page displaying my email and a successful message" do
         expect(page).to have_content "a@a.com"
@@ -140,16 +140,16 @@ RSpec.feature "LandingPages", type: :feature do
         click_button("Sign up")
         click_link "Sign Out"
       end
-      Then "I can click the Sign In link" do
-        click_link "Sign In"
+      Then "I can click the Log In link" do
+        click_link "Log In"
       end
       Then "I am taken to the Log in page" do
-        expect(page).to have_content("Log in")
+        expect(page).to have_content("Log In")
       end
       And "I can fill out the email and password field" do
         fill_in "user_email", with: "a@a.com"
         fill_in "user_password", with: "asdfg"
-        click_button "Log in"
+        click_button "Log In"
       end
       Then "I can see an error message" do
         expect(page).to have_content "Invalid Email or password."
@@ -250,7 +250,7 @@ RSpec.feature "LandingPages", type: :feature do
   #       visit "/landmarks/map_locations"
   #       expect(page).to have_content "LEARN Sucka"
   #     end
-  #   
+  #
   #   end
   #
   # end
