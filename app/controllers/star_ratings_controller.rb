@@ -11,15 +11,19 @@ class StarRatingsController < ApplicationController
   end
 
   def create
-    @star_rating = StarRating.new(review_params)
+    @star_rating = StarRating.new(star_rating_params)
+    if @star_ratings.nil?
+      flash[:alert] = 'Star Rating Cannot be Empty '
+      redirect_to :back
+    else
     @star_rating.user_id = current_user.id
-    @star_rating.truck_id = @landmark.id
+    @star_rating.landmark_id = @landmark.id
 
     @landmark_ratings = StarRating.where(landmark_id: @landmark.id)
 
-    # Check to see if contributor has already left a review for the truck and
-    # if so destroy the review
-    @landmark_rating.each do |rating|
+    # Check to see if user has already left a review for the landmark and
+    # if so destroy the old review
+    @landmark_ratings.each do |rating|
       if rating.user_id == current_user.id
         rating.destroy
       end
@@ -31,6 +35,8 @@ class StarRatingsController < ApplicationController
       render 'new'
     end
   end
+
+end
 
   def update
     @star_rating.update(star_rating_params)

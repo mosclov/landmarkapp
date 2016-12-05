@@ -28,11 +28,11 @@
  </div>
 
 
- <%= render 'star_ratings/form' %>
-
-
 <% if current_user %>
   <h3>Review this landmark!</h3>
+    <% if user_signed_in? && @landmark.user_id != current_user.id  %>
+    <%= render 'star_ratings/form' %>
+    <% end %>
   <%= render 'reviews/form' %>
 <% end %>
 
