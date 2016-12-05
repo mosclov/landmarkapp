@@ -1,0 +1,21 @@
+
+
+  <div class="list-group">
+    <% @results.each do |landmark| %>
+    <a href="/landmarks/<%= landmark.id.to_s %>" class="list-group-item list-group-item-action clearfix">
+      <h3 class="list-group-item-heading"><%= landmark.name %></h3>
+      <small><%= landmark.address %></small><br><br>
+      <div class="row">
+        <div class="col-md-2">
+      <% if landmark.image? %>
+          <%= image_tag landmark.image, :size => "150x100" %>
+      <% end %>
+        </div>
+        <div class="col-md-4 giveMeEllipsis">
+          <%= landmark.description %>
+        </div>
+      </div>
+    </a>
+  </br>
+  <% end %>
+  </div>

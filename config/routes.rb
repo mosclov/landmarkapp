@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   resources :reviews
+
+    get 'landmarks/search_results'
+
   resources :landmarks do
     collection do
       get 'map_locations'
@@ -9,6 +12,8 @@ Rails.application.routes.draw do
     member do
       get 'map_location'
     end
+
+
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
