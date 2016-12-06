@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+    has_many :star_ratings
     has_many :landmarks
     has_many :reviews
     has_many :active_relationships, class_name:  "Relationship",
@@ -46,4 +46,5 @@ class User < ActiveRecord::Base
     end
   end
 
+  
 end

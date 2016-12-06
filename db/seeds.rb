@@ -13,6 +13,17 @@
   )
 end
 
+30.times do |i|
+Landmark.create!(
+  name: Faker::Commerce.department + Faker::Commerce.color,
+  description: Faker::ChuckNorris.fact,
+  address: '1550 Market St. San Diego, CA',
+  criteria: Faker::Superhero.power,
+  image: Faker::Placeholdit.image,
+  user_id:  Faker::Number.between(1, 99)
+)
+end
+
 users = User.all
 user  = users.first
 following = users[2..50]

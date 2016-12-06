@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'textacular', '~> 3.0'
 gem 'underscore-rails'
 gem 'geocoder'
 gem 'gmaps4rails'

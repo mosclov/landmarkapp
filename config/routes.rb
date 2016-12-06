@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   resources :reviews
+
+    get 'landmarks/search_results'
+
   resources :landmarks do
     collection do
       get 'map_locations'
@@ -9,6 +12,7 @@ Rails.application.routes.draw do
     member do
       get 'map_location'
     end
+      resources :star_ratings, except: [:show, :index]
   end
 
   post 'search/location_search'

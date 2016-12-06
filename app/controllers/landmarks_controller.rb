@@ -10,6 +10,7 @@ class LandmarksController < ApplicationController
   def map_locations
     #if the user has entered a zipcode
     if !params[:zipcode].nil?
+
       zipcode = params[:zipcode]
       #find all landmarks whose address has this zipcode and display them on the search page map
       @landmarks = Landmark.where('address LIKE :address', address: "%#{zipcode}%" )
@@ -75,7 +76,17 @@ end
   # GET /landmarks/1.json
   def show
     @review = Review.new
+    # @landmark = Landmark.find(params[:id])
     @review.landmark = @landmark
+    @star_ratings = StarRating.where(landmark_id: @landmark)
+    @star_rating = StarRating.new
+
+    if @star_ratings.blank?
+      @avg_rating = 0
+    else
+      @avg_rating = @star_ratings.average(:rating).round(2)
+    end
+
   end
 
   # GET /landmarks/new
@@ -130,6 +141,15 @@ end
     end
   end
 
+ #Textacular basic search for keywords in description attriute for landmarks
+  def search_results
+    @results = Landmark.basic_search(description: params[:search])
+    if @results.length == 0
+      flash[:alert] = 'No match found! Please try again.'
+      redirect_to '/'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_landmark
@@ -138,7 +158,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def landmark_params
-      params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id, :image)
+      params.require(:landmark).permit(:name, :description, :address, :criteria, :user_id, :image, :rating)
     end
 
     def review_params

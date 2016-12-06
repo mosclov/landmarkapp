@@ -4,21 +4,42 @@
       <div id="map3" style="width: 600px; height: 500px;" data-landmark-zipcode="<%= @zipcode %>">Google Map will appear here...</div>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-1">
     </div>
 
 
-    <div class="col-md-4">
-      <% @landmarks.each do |landmark| %>
-      <ul>
-        <li>
-          <h4><%= landmark.name %> </h4>
-          <%= landmark.address %> <br>
-          <%= landmark.description %>
+    <div class="col-md-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Criteria</th>
+            </tr>
+          </thead>
 
-        </li>
-      </ul>
-      <% end %>
+          <tbody>
+            <% @landmarks.each do |landmark| %>
+              <tr>
+                <td>
+                  <a href="/landmarks/<%= landmark.id.to_s %>" >
+                    <%= landmark.name %>
+                  </a>
+                </td>
+              <td>
+                <a href="/landmarks/<%= landmark.id.to_s %>" >
+                <%= landmark.address %>
+                  </a>
+              </td>
+              <td>
+                <a href="/landmarks/<%= landmark.id.to_s %>" >
+                  <%= landmark.description %>
+                </a>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
