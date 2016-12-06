@@ -13,7 +13,7 @@ class LandmarksController < ApplicationController
 
       zipcode = params[:zipcode]
       #find all landmarks whose address has this zipcode and display them on the search page map
-      @landmarks = Landmark.where('address LIKE :address', address: "%#{zipcode}%" )
+      @landmarks = Landmark.near(params[:zipcode], 10, :order => false)
       @hash = Gmaps4rails.build_markers(@landmarks) do |landmark, marker|
         if landmark.longitude.nil? || landmark.latitude.nil?
           marker.lat(-1)
