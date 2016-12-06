@@ -260,7 +260,7 @@ RSpec.feature "LandingPages", type: :feature do
         click_on "Create New Landmark"
         fill_in "landmark_name", with: "Cafe Chloe"
         fill_in "landmark_description", with: "Something"
-        fill_in "landmark_address", with: "1550 Market St, San Diego CA, 92111"
+        fill_in "landmark_address", with: "2125 Westinghouse Street, San Diego, CA"
         fill_in "landmark_criteria", with: "Test criteria"
         attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
         click_on "Create Landmark"
@@ -268,11 +268,11 @@ RSpec.feature "LandingPages", type: :feature do
 
       Then "I can type in a zipcode on the landing page" do
         visit '/'
-        fill_in "zipcode", with: "92111"
+        fill_in "zipcode", with: "92101"
         click_on "radius_button"
       end
 
-      And "I am taken to a page that shows me all landmarks with that zipcode" do
+      And "I am taken to a page that shows me all landmarks within 10 miles of that zip" do
         expect(page).to have_content("Cafe Chloe")
       end
     end
