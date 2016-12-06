@@ -247,6 +247,36 @@ RSpec.feature "LandingPages", type: :feature do
       end
     end#Steps
   end#context
+
+  context "Searching for landmarks by zipcode" do
+    Steps "To search by zipcode" do
+      Given "that I am on the landing page" do
+        visit "/"
+        click_on 'Sign Up'
+        fill_in 'user_email', with: 'm@m.com'
+        fill_in 'user_password', with: 'mrinalini'
+        fill_in 'user_password_confirmation', with: 'mrinalini'
+        click_on 'Sign up'
+        click_on "Create New Landmark"
+        fill_in "landmark_name", with: "Cafe Chloe"
+        fill_in "landmark_description", with: "Something"
+        fill_in "landmark_address", with: "1550 Market St, San Diego CA, 92111"
+        fill_in "landmark_criteria", with: "Test criteria"
+        attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
+        click_on "Create Landmark"
+      end
+
+      Then "I can type in a zipcode on the landing page" do
+        visit '/'
+        fill_in "zipcode", with: "92111"
+        click_on "radius_button"
+      end
+
+      And "I am taken to a page that shows me all landmarks with that zipcode" do
+        expect(page).to have_content("Cafe Chloe")
+      end
+    end
+  end
   context "Searching for a landmark" do
     Steps "to search for a landmark" do
       Given "I am on the landing page and there are saved landmarks" do
