@@ -41,7 +41,7 @@
   </div>
 
   <div class="col-md-6">
-
+    <center><h2> Most Reviewd Landmarks</h2></center>
     <table class="table">
       <thead>
         <tr>
@@ -64,8 +64,8 @@
            <%= landmark.address %>
              </a>
          </td>
-         <td style="width: 15%">
-           <!-- <a href="/landmarks/<%= landmark.id.to_s %>" > -->
+         <td>
+           <a href="/landmarks/<%= landmark.id.to_s %>" >
            <% @star_reviews = StarRating.where(landmark_id: landmark.id) %>
              <% if @star_reviews.blank? %>
              <% @avg_rating = 0 %>
@@ -73,14 +73,12 @@
              <% @avg_rating = @star_reviews.average(:rating).round(2) %>
            <% end %>
            <div class="star-rating" data-score= <%= @avg_rating %> ></div>
-           <!-- </a> -->
+           </a>
          </td>
        </tr>
      <% end %>
    </tbody>
  </table>
-
- 
   <center><%= will_paginate @landmarks %></center>
 
   </div>

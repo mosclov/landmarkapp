@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-99.times do |i|
+60.times do |i|
   User.create!(
     email: Faker::Internet.user_name + i.to_s + "@#{Faker::Internet.domain_name}",
     password: 'password'
@@ -20,8 +20,16 @@ Landmark.create!(
   address: '1550 Market St. San Diego, CA',
   criteria: Faker::Superhero.power,
   image: Faker::Placeholdit.image,
-  user_id:  Faker::Number.between(1, 99)
+  user_id:  Faker::Number.between(1, 60)
 )
+end
+
+150.times do |i|
+  StarRating.create!(
+    rating: Faker::Number.between(1, 5),
+    user_id: Faker::Number.between(1, 60),
+    landmark_id: Faker::Number.between(1, 30)
+  )
 end
 
 users = User.all

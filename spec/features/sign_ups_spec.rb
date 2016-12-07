@@ -44,7 +44,7 @@ RSpec.feature "Sign up", type: :feature do
         click_on 'Sign up'
       end
       Then 'the other user can go to my profile and follow me' do
-      visit '/'
+      visit '/landmarks'
       click_on "Cafe Chloe"
       click_on 'm@m.com'
       click_on 'Follow'
