@@ -31,6 +31,9 @@ class ReviewsController < ApplicationController
     if @review.text.strip.empty?
       flash[:alert] = "Review cannot be blank!"
       redirect_to '/landmarks/'+ @review.landmark.id.to_s
+    elsif @review.text.length > 140
+      flash[:alert] = "Review cannot be more than 140 characters!"
+      redirect_to '/landmarks/'+ @review.landmark.id.to_s
     else
       respond_to do |format|
         if @review.save

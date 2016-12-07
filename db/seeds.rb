@@ -24,7 +24,7 @@ Landmark.create!(
 )
 end
 
-150.times do |i|
+350.times do |i|
   StarRating.create!(
     rating: Faker::Number.between(1, 5),
     user_id: Faker::Number.between(1, 60),
@@ -32,7 +32,7 @@ end
   )
 end
 
-150.times do |i|
+175.times do |i|
   Review.create!(
   text: Faker::Hipster.sentence,
   user_id: Faker::Number.between(1, 60),
