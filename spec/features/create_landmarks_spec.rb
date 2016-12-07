@@ -27,11 +27,10 @@ RSpec.feature "CreateLandmarks", type: :feature do
         click_on "Create Landmark"
       end
 
-      #TODO
-      # WILL TEST AFTER MY PROFILE LINK HAS BEEN ADDED TO NAVBAR
+
       And "I can see all my landmarks" do
 
-        visit '/users/' + User.first.id.to_s
+        click_on 'myProfile'
         expect(page).to have_content("Cafe Chloe")
         expect(page).to have_button("Edit")
 
