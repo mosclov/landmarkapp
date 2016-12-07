@@ -5,6 +5,8 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'omniauth-facebook'
 
+gem 'public_activity'
+
 gem 'paperclip'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
