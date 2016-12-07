@@ -10,6 +10,7 @@
 <br>
 <%= render 'follow_form' %>
 <hr>
+
 <% if current_user == @user %>
   <h3>Landmarks Fun Fact:</h3>
   <em><p class="quote"></p></em>
@@ -17,18 +18,22 @@
 <% end %>
 <div class="row">
   <div class="col-sm-12">
-    <!-- <h2 class="btnmar"><u>My Landmarks</u></h2>
-    <a type="button" name="button" href="/landmarks/new" class="btn btn-primary text-right btn1">Create New Landmark!</a> -->
     <br>
       <ul class="nav nav-pills" role="tablist">
-        <li role="presentation"class="active"><a href="#index" role="tab" data-toggle="tab">Landmarks</a></li>
+        <% if current_user == @user %>
+        <li role="presentation" class="active"><a href="#social_feed" role="tab" data-toggle="tab">Review Feed</a></li>
+        <% end %>
+        <li role="presentation"><a href="#index" role="tab" data-toggle="tab">Landmarks</a></li>
         <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">Favorites</a></li>
         <% if current_user == @user %>
         <li role="presentation"><a href="#createLandmark" role="tab" data-toggle="tab">Create New Landmark!</a></li>
         <% end %>
       </ul>
       <div class="tab-content">
-        <div role="tabpanel"  class="tab-pane in active" id="index">
+        <div role="tabpanel" class="tab-pane in active" id="social_feed">
+          <%= render 'shared/feed' %>
+        </div>
+        <div role="tabpanel"  class="tab-pane" id="index">
           <div class="list-group">
             <% @user.landmarks.each do |landmark| %>
             <a href="/landmarks/<%= landmark.id.to_s %>" class="list-group-item list-group-item-action clearfix">

@@ -32,6 +32,14 @@ end
   )
 end
 
+150.times do |i|
+  Review.create!(
+  text: Faker::Hipster.sentence,
+  user_id: Faker::Number.between(1, 60),
+  landmark_id: Faker::Number.between(1, 30)
+  )
+end
+
 users = User.all
 user  = users.first
 following = users[2..50]
