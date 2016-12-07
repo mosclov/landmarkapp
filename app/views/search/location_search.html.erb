@@ -14,7 +14,7 @@
             <tr>
               <th>Name</th>
               <th>Address</th>
-              <th>website</th>
+              <th>Rating</th> 
             </tr>
           </thead>
 
@@ -33,7 +33,13 @@
               </td>
               <td>
                 <a href="/landmarks/<%= landmark.id.to_s %>" >
-                  <%= landmark.description %>
+                <% @star_reviews = StarRating.where(landmark_id: landmark.id) %>
+                  <% if @star_reviews.blank? %>
+                  <% @avg_rating = 0 %>
+                <% else %>
+                  <% @avg_rating = @star_reviews.average(:rating).round(2) %>
+                <% end %>
+                <div class="star-rating" data-score= <%= @avg_rating %> ></div>
                 </a>
               </td>
             </tr>
@@ -43,3 +49,21 @@
     </div>
   </div>
 </div>
+
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>
+
+<script>
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'star_rating[rating]'
+  });
+</script>

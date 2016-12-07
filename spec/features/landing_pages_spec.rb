@@ -269,8 +269,8 @@ RSpec.feature "LandingPages", type: :feature do
 
       Then "I can type in a zipcode on the landing page" do
         visit '/'
-        fill_in "zipcode", with: "92101"
-        click_on "radius_button"
+        fill_in "zipcode", with: "92111"
+        click_on "Landmarks Near Me"
       end
 
       And "I am taken to a page that shows me all landmarks within 10 miles of that zip" do

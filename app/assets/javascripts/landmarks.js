@@ -11,7 +11,7 @@ function createGmap2(dataFromServer) {
       markers = handler.addMarkers(dataFromServer);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      handler.getMap().setZoom(14);
+      handler.getMap().setZoom(12);
     }
   );
 };

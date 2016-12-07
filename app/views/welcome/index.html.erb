@@ -10,27 +10,24 @@
 
 <!--TODO: requires functionality to actually search with map-->
 <div class="container">
-  <div class="row">
+  <form class="navbar-form navbar-left" action="landmarks/search_results" method="get">
+    <table>
+      <tr>
+      <div class="form-group">
+        <td>  <input name="search" type="text" class="form-control" placeholder="Search"> </td>
+      </div>
+      <td ><button type="submit" class="btn btn-default" name="" rowspan="" id="search_button1">Submit</button> </td>
+  </form>
 
-    <div class="col-md-6">
-      <form class="navbar-form navbar-left" action="landmarks/search_results" method="get">
-        <div class="form-group">
-          <input name="search" type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default" name="">Submit</button>
+    <tr>
+      <form action="search/location_search" method="post" id="radius_form">
+          <tr>
+            <td><input type="text" class="form-control" placeholder="Zipcode" name="zipcode" id="zipcode" /> </td>
+            <td><input type="submit"  id="search_button2" class="btn btn-default" value="Landmarks Near Me" /> </td>
       </form>
-    </div>
-
-    <form action="search/location_search" method="post" id="radius_form">
-      <div class="col-md-1">
-        <input type="text" class="form-control" placeholder="Zipcode" name="zipcode" id="zipcode" />
-      </div>
-      <div class="col-md-1">
-        <button type="submit"  id="radius_button" class="btn btn-default">Landmarks Near Me</button>
-      </div>
-    </form>
+    </tr>
+  </table>
   </div>
-</div>
 
 <hr>
 
