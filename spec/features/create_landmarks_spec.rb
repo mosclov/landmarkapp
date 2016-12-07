@@ -21,7 +21,7 @@ RSpec.feature "CreateLandmarks", type: :feature do
         fill_in "landmark_name", with: "Cafe Chloe"
         fill_in "landmark_description", with: "Something"
         fill_in "landmark_address", with: "1550 Market St, San Diego CA"
-        fill_in "landmark_criteria", with: "Test criteria"
+        fill_in "landmark_website", with: "Test website"
         attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
 
         click_on "Create Landmark"

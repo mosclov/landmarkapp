@@ -12,9 +12,9 @@
 
       <h4><%= @landmark.description %></h4>
 
-      <p> <strong>Criteria:</strong>
-        <%= @landmark.criteria %></p>
-
+      <% if !@landmark.website.nil? %>
+        <p><%= link_to @landmark.website, "http://#{@landmark.website}", :target => "_blank" %></p>
+      <% end %>
 
   <div class="star-rating starinline" data-score= <%= @avg_rating %> ></div>
    <em><%= "#{@star_ratings.length} reviews"%></em>
