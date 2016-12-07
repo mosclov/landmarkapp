@@ -18,7 +18,7 @@ Landmark.create!(
   name: Faker::Commerce.department + Faker::Commerce.color,
   description: Faker::ChuckNorris.fact,
   address: '1550 Market St. San Diego, CA',
-  criteria: Faker::Superhero.power,
+  website: Faker::Internet.url,
   image: Faker::Placeholdit.image,
   user_id:  Faker::Number.between(1, 60)
 )

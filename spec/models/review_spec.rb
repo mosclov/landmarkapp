@@ -10,7 +10,7 @@ RSpec.describe Review, type: :model do
     landmark = Landmark.new(name: "Cafe Chloe",
                       description: "Feels like Paris in the middle of San Diego!",
                           address: '721 Ninth Ave, San Diego, CA 92101',
-                         criteria: 'Test criteria',
+                         website: 'Test website',
                             image: Rack::Test::UploadedFile.new('app/assets/images/silverwing.jpeg')
                             )
 
