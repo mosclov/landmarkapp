@@ -117,15 +117,23 @@ html {
 footer {
   text-align: center;
 }
-
-#radius_button {
-  margin-left: 0.5px;
+//
+// #radius_button {
+//   margin-left: 200px;
+//   }
+//
+// #zipcode {
+//   width: 185px;
+//   margin-left: 13px;
+// }
+//
+// #radius_form {
+//
+// }
+#search_button1, #search_button2 {
+  margin-left: 10px;
 }
 
-#zipcode {
-  width: 95px;  
-}
-
-#radius_form {
-  padding-top: 8px;
+#zipcode, #search_button2 {
+  margin-top: 15px;
 }
