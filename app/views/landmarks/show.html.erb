@@ -3,6 +3,7 @@
  <div class="row">
   <div class="col-md-4">
       <h1><%= @landmark.name %></h1>
+
       <% if user_signed_in? %>
         <small>Uploaded by:
         <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a></small><br>
@@ -26,6 +27,7 @@
   <h3>Review this landmark!</h3>
   <%= render 'reviews/form' %>
 <% end %>
+<%= render 'favorite_form' if user_signed_in? %>
 
   <h3><strong>Reviews:
     <% if !user_signed_in? %>

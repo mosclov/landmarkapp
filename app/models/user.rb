@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-
+    # added has many favorites
+    has_many :favorites
+    has_many :favorited, through: :favorites, source: :landmark
     has_many :landmarks
     has_many :reviews
     has_many :active_relationships, class_name:  "Relationship",
@@ -17,6 +19,10 @@ class User < ActiveRecord::Base
 
    def follow(other_user)
      active_relationships.create(followed_id: other_user.id)
+   end
+
+   def favorite(landmark)
+     active_relationships.create(landmark_id: other_user.id)
    end
 
 
@@ -44,6 +50,20 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  # Follows a user.
+  def add_favorite(landmark)
+    favorites.create(landmark_id: landmark.id)
+  end
+
+  def remove_favorite(landmark)
+    favorites.find_by(landmark_id: landmark.id).destroy
+  end
+
+  # Returns true if the current user is following the other user.
+  def favorited?(landmark)
+    favorited.include?(landmark)
   end
 
 end

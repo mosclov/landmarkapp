@@ -16,6 +16,17 @@
       <div class="col-md-4 giveMeEllipsis">
         <%= landmark.description %>
       </div>
+      <% if !current_user.favorited?(landmark) %>
+        <form action="/favorites/create_from_listing" method="post" class="btn">
+          <input type="hidden" name="landmark_id" value="<%= landmark.id.to_s %>">
+          <input type="submit" value="Favorite">
+        </form>
+      <% elsif current_user.favorited?(landmark) %>
+        <form action="/favorites/unfavorite_from_listing" method="post" class="btn">
+          <input type="hidden" name="landmark_id" value="<%= landmark.id.to_s %>">
+          <input type="submit" value="Unfavorite">
+        </form>
+      <% end %>
     </div>
   </a>
 </br>
