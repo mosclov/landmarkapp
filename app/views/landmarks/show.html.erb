@@ -3,8 +3,8 @@
   <div class="col-md-4">
       <h1><%= @landmark.name %></h1>
       <% if user_signed_in? %>
-        <small>Uploaded by:
-        <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a></small><br>
+        <small>Go to
+        <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a>'s profile.</small><br>
       <% end %>
       <h6><%= @landmark.address %></h6>
 
@@ -33,11 +33,14 @@
 <% end %>
 
 <% if current_user %>
-  <h3>Review this landmark!</h3>
+
     <% if user_signed_in? && @landmark.user_id != current_user.id  %>
+    <h3>Review this landmark!</h3>
     <%= render 'star_ratings/form' %>
     <% end %>
-  <%= render 'reviews/form' %>
+    <% if current_user.id != @landmark.user_id %>
+      <%= render 'reviews/form' %>
+    <% end %>
 <% end %>
 
 
@@ -75,7 +78,7 @@
 
 <script>
     $('.star-rating').raty({
-      path: '/assets/',
+      path: '/images/ratyrate/',
       readOnly: true,
       score: function() {
             return $(this).attr('data-score');
@@ -85,7 +88,7 @@
 
 <script>
   $('#star-rating').raty({
-    path: '/assets/',
+    path: '/images/ratyrate/',
     scoreName: 'star_rating[rating]'
   });
 </script>

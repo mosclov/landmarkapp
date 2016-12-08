@@ -176,7 +176,7 @@ RSpec.feature "LandingPages", type: :feature do
   end#context
 
   context "Viewing the website landmarks" do
-    Steps "to view the landmarks" do
+    Steps "to view the landmarks and their users" do
       Given "that I am on the landing page" do
         visit "/"
         click_on 'Sign Up'
@@ -201,6 +201,7 @@ RSpec.feature "LandingPages", type: :feature do
         expect(page).to have_content "Cafe Chloe"
         expect(page).to have_content "Something"
       end
+
       #Testing for landmarks list on welcome page next to map BY MRIN
       #Commented out because now it only appears if there is a star rating in the landmark -fg
       # And "I can see the landmark listings on the landing page too" do

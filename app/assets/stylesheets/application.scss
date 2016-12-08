@@ -18,3 +18,41 @@
  //   z-index: 1;
  //   padding-right: 100px;
  // }
+
+body {
+  background-color: #b1cbd8;
+}
+
+td {
+  background-color:	#b1cbd8;
+}
+
+.well,  {
+  background-color: 	#b1cbd8;
+}
+
+.well {
+  margin-top: 15px;
+}
+
+#ourteam {
+  text-align: center;
+}
+
+#ourteam + .container {
+  padding-left: 100px;
+  .member {
+    text-align: center;
+    width: 300px;
+    margin: 12px 24px 24px 0;
+    float: left;
+    img {
+      width: 300px;
+      height: 300px;
+    }
+  }
+}
+
+#image {
+  align-content: center;
+}
