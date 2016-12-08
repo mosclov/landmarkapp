@@ -26,6 +26,11 @@
 
  </div>
 
+ <% if user_signed_in? %>
+  <div id="follow_landmark">
+    <%= render "shared/follow_landmark", :locals => {:landmark => @landmark} %>
+  </div>
+<% end %>
 
 <% if current_user %>
   <h3>Review this landmark!</h3>
@@ -66,6 +71,7 @@
 
 <hr>
 <!-- you can only add reviews if signed in -->
+
 
 <script>
     $('.star-rating').raty({

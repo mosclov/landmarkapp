@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    acts_as_follower
     has_many :star_ratings
     has_many :landmarks
     has_many :reviews, dependent: :destroy
@@ -54,6 +55,8 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+
 
 
 end

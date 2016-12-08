@@ -1,0 +1,5 @@
+  <% if current_user.following?(@landmark) %>
+    <%= button_to("Un-Follow", landmark_follow_path(landmark.to_param, current_landmark.get_follow(@landmark)), :method => :delete, :remote => true) %>
+  <% else %>
+    <%= button_to("Follow", landmark_follows_path(@landmark), :remote => true) %>
+  <% end %>

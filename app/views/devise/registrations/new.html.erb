@@ -1,29 +1,57 @@
-<h2>Sign up</h2>
+<body id="signup_body">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+ <div id="sign_up" class="container-fluid">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <div class="row">
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-  <br />
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+      <div class="col-md-3">
 
-<%= render "devise/shared/links" %>
+      </div>
+      <div class="sign_up_box">
+
+
+      <div id="signup_block" class="col-md-7">
+
+        <h2>Sign up</h2>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="signup">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, size: 23 %>
+        </div>
+
+        <div class="sign_up">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em><span>(<%= @minimum_password_length %> characters minimum</span>)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "off", size: 23 %>
+        </div>
+
+        <div class="sign_up">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off", size: 23 %>
+        </div>
+        <br />
+        <div class="sign_up_button">
+          <%= f.submit "Sign up" %>
+        </div>
+        <% end %>
+        <div class="facebook">
+
+
+        <%= render "devise/shared/links" %>
+        </div>
+     </div> <!-- close signup block-->
+   </div> <!--close sign up block-->
+     <div class="col-md-2">
+     </div>
+
+   </div> <!--close row-->
+
+
+  </div> <!--close container-->
+</body>

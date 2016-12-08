@@ -1,40 +1,107 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-//
-// .container {
-//   background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/3e/Paul_Guillemin.jpg"/>);
-// }
-//
-// #sign_in {
-//   background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/3e/Paul_Guillemin.jpg");
-//   background-repeat: no-repeat;
-//   height: 800px;
-// }\
-// body {
-//   background-image: url("BalboaPark.JPG");
-//   background-size: 50%;
-//   background-repeat: no-repeat;
-//   // background-position: center;
-//   height: 700px;
-//   width: 2000px;
 
-
+// #login_body, #signup_body {
+//   background-size: contain;
 // }
-// url("BalboaPark.JPG");
-#sign_in {
-  margin-left: 160px;
-  background-image: url("BalboaPark.JPG");
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 700px;
+.form {
+
 }
 
-#login_block {
+.login_box, .sign_up_box {
+  padding: 30px;
+}
+#login_block, #signup_block {
+
   background-color: white;
-  margin-top: 10px;
+  // opacity: 0.9;
+  // text-align: center;
+  // margin-top: 10px;
+  width: 300px;
+  height: 450px;
+  // padding-right: 20px;
+  margin-left: 20%;
+  //centering login form
+  padding-left: 43px;
+  padding-right: 20px;
+
+  // margin-left: 300px;
+  // padding-bottom: 12px;
+  // padding-top: 1px;
+  border-style: inset;
+  border-width: medium;
+}
+.sign_up_button {
+  padding-top: 0px;
+
+
+}
+#login_text {
+  text-align: left;
 }
 
-.fb-btn {
-  margin-bottom: 5px;
+.facebook2 {
+  padding-top: 50px;
+
 }
+
+
+
+.facebook {
+  padding-right: 50px;
+  padding-top: 60px;
+
+}
+.login_btn {
+  padding-bottom: -20px;
+  padding-top: 10px;
+}
+
+
+.forget {
+  padding-bottom: 10px;
+}
+
+.password_signup, .password_signup_confirm, .email_signup, .password_login, .email_login {
+  padding-top: 10px;
+}
+
+
+span {
+  font-size: 10px;
+}
+
+#login_body:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  background-image: url("background3.jpg");
+
+  background-size: contain;
+  background-repeat: repeat;
+}
+
+
+#signup_body:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  background-image: url("background3.jpg");
+  background-size: contain;
+  background-repeat: repeat;
+}
+// .password_login, .email_login {
+//   padding-top: 10px;
+// }
+
+// #sign_up {
+// padding-bottom: 100px;
+// }

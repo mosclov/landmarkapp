@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'landmarks/search_results'
 
   resources :landmarks do
+    resources :follows, :controller => 'follows_landmarks', :only => [:create, :destroy]
     collection do
       get 'map_locations'
     end
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+
   root 'welcome#index'
   resources :relationships,       only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
