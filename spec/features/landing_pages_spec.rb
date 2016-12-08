@@ -11,7 +11,7 @@ RSpec.feature "LandingPages", type: :feature do
     fill_in "landmark_name", with: "Cafe Chloe"
     fill_in "landmark_description", with: "Something"
     fill_in "landmark_address", with: "1550 Market St, San Diego CA"
-    fill_in "landmark_criteria", with: "Test criteria"
+    fill_in "landmark_website", with: "Test website"
     attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
     click_on "Create Landmark"
     click_link "Sign Out"
@@ -176,7 +176,7 @@ RSpec.feature "LandingPages", type: :feature do
   end#context
 
   context "Viewing the website landmarks" do
-    Steps "to view the landmarks" do
+    Steps "to view the landmarks and their users" do
       Given "that I am on the landing page" do
         visit "/"
         click_on 'Sign Up'
@@ -188,7 +188,7 @@ RSpec.feature "LandingPages", type: :feature do
         fill_in "landmark_name", with: "Cafe Chloe"
         fill_in "landmark_description", with: "Something"
         fill_in "landmark_address", with: "1550 Market St, San Diego CA"
-        fill_in "landmark_criteria", with: "Test criteria"
+        fill_in "landmark_website", with: "Test website"
         attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
         click_on "Create Landmark"
         click_link "Sign Out"
@@ -201,11 +201,13 @@ RSpec.feature "LandingPages", type: :feature do
         expect(page).to have_content "Cafe Chloe"
         expect(page).to have_content "Something"
       end
+
       #Testing for landmarks list on welcome page next to map BY MRIN
-      And "I can see the landmark listings on the landing page too" do
-        visit '/'
-        expect(page).to have_content("Cafe Chloe")
-      end
+      #Commented out because now it only appears if there is a star rating in the landmark -fg
+      # And "I can see the landmark listings on the landing page too" do
+      #   visit '/'
+      #   expect(page).to have_content("Cafe Chloe")
+      # end
     end #steps
   end #context
   context "returning to the Landing Page" do
@@ -247,6 +249,36 @@ RSpec.feature "LandingPages", type: :feature do
       end
     end#Steps
   end#context
+
+  context "Searching for landmarks by zipcode" do
+    Steps "To search by zipcode" do
+      Given "that I am on the landing page" do
+        visit "/"
+        click_on 'Sign Up'
+        fill_in 'user_email', with: 'm@m.com'
+        fill_in 'user_password', with: 'mrinalini'
+        fill_in 'user_password_confirmation', with: 'mrinalini'
+        click_on 'Sign up'
+        click_on "Create New Landmark"
+        fill_in "landmark_name", with: "Cafe Chloe"
+        fill_in "landmark_description", with: "Something"
+        fill_in "landmark_address", with: "2125 Westinghouse Street, San Diego, CA"
+        fill_in "landmark_website", with: "Test website"
+        attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
+        click_on "Create Landmark"
+      end
+
+      Then "I can type in a zipcode on the landing page" do
+        visit '/'
+        fill_in "zipcode", with: "92111"
+        click_on "Landmarks Near Me"
+      end
+
+      And "I am taken to a page that shows me all landmarks within 10 miles of that zip" do
+        expect(page).to have_content("Cafe Chloe")
+      end
+    end
+  end
   context "Searching for a landmark" do
     Steps "to search for a landmark" do
       Given "I am on the landing page and there are saved landmarks" do

@@ -13,6 +13,33 @@
   )
 end
 
+30.times do |i|
+Landmark.create!(
+  name: Faker::Commerce.department + Faker::Commerce.color,
+  description: Faker::ChuckNorris.fact,
+  address: '1550 Market St. San Diego, CA',
+  website: Faker::Internet.url,
+  image: Faker::Placeholdit.image,
+  user_id:  Faker::Number.between(1, 60)
+)
+end
+
+350.times do |i|
+  StarRating.create!(
+    rating: Faker::Number.between(1, 5),
+    user_id: Faker::Number.between(1, 60),
+    landmark_id: Faker::Number.between(1, 30)
+  )
+end
+
+175.times do |i|
+  Review.create!(
+  text: Faker::Hipster.sentence,
+  user_id: Faker::Number.between(1, 60),
+  landmark_id: Faker::Number.between(1, 30)
+  )
+end
+
 users = User.all
 user  = users.first
 following = users[2..50]

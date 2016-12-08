@@ -1,6 +1,9 @@
 class WelcomeController < ApplicationController
+
   def index
-    @landmarks = Landmark.paginate(:page => params[:page], :per_page => 10)
+    @landmarks = Landmark.stars.paginate(:page => params[:page], :per_page => 5)
   end
 
+  def about
+  end
 end

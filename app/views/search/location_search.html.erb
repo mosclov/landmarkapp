@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <div id="map3" style="width: 600px; height: 500px;" data-landmark-zipcode="<%= @zipcode %>">Google Map will appear here...</div>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+
+
+    <div class="col-md-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Rating</th> 
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @landmarks.each do |landmark| %>
+              <tr>
+                <td>
+                  <a href="/landmarks/<%= landmark.id.to_s %>" >
+                    <%= landmark.name %>
+                  </a>
+                </td>
+              <td>
+                <a href="/landmarks/<%= landmark.id.to_s %>" >
+                <%= landmark.address %>
+                  </a>
+              </td>
+              <td>
+                <a href="/landmarks/<%= landmark.id.to_s %>" >
+                <% @star_reviews = StarRating.where(landmark_id: landmark.id) %>
+                  <% if @star_reviews.blank? %>
+                  <% @avg_rating = 0 %>
+                <% else %>
+                  <% @avg_rating = @star_reviews.average(:rating).round(2) %>
+                <% end %>
+                <div class="star-rating" data-score= <%= @avg_rating %> ></div>
+                </a>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>
+
+<script>
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'star_rating[rating]'
+  });
+</script>

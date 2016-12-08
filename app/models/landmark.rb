@@ -1,6 +1,8 @@
 class Landmark < ActiveRecord::Base
-  belongs_to :user
+  has_many :star_ratings
   has_many :reviews, dependent: :destroy
+  scope :stars, -> { order(star_ratings_count: :desc).where("star_ratings_count > ?", 0) }
+  belongs_to :user
   validates :name, :address, presence: true
   validates :name, uniqueness: true
   geocoded_by :address

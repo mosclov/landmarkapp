@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /reviews
   # GET /reviews.json
@@ -25,10 +26,13 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    # @landmark = Landmark.find(params[:id])
+    @feed_items = current_user.feed.paginate(page: params[:page])
     @review = Review.new(review_params)
     if @review.text.strip.empty?
       flash[:alert] = "Review cannot be blank!"
+      redirect_to '/landmarks/'+ @review.landmark.id.to_s
+    elsif @review.text.length > 140
+      flash[:alert] = "Review cannot be more than 140 characters!"
       redirect_to '/landmarks/'+ @review.landmark.id.to_s
     else
       respond_to do |format|
@@ -36,6 +40,7 @@ class ReviewsController < ApplicationController
           format.html { redirect_to '/landmarks/'+ @review.landmark.id.to_s, notice: 'Review was successfully created.' }
           format.json { render :show, status: :created, location: @review }
         else
+          @feed_items = []
           format.html { render :new }
           format.json { render json: @review.errors, status: :unprocessable_entity }
         end
@@ -78,5 +83,10 @@ class ReviewsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.require(:review).permit(:text, :landmark_id, :user_id)
+    end
+
+    def correct_user
+      @review = current_user.reviews.find_by(id: params[:id])
+      redirect_to root_url if @review.nil?
     end
 end

@@ -22,9 +22,10 @@ Rails.application.routes.draw do
     member do
       get 'map_location'
     end
-
-
+      resources :star_ratings, except: [:show, :index]
   end
+
+  post 'search/location_search'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users, only: [:show, :index, :destroy] do
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :relationships,       only: [:create, :destroy]
   resources :favorites,       only: [:create, :destroy]
+  get 'welcome/about'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

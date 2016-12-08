@@ -1,12 +1,11 @@
-<p id="notice"><%= notice %></p>
 
  <div class="row">
   <div class="col-md-4">
       <h1><%= @landmark.name %></h1>
 
       <% if user_signed_in? %>
-        <small>Uploaded by:
-        <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a></small><br>
+        <small>Go to
+        <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a>'s profile.</small><br>
       <% end %>
       <h6><%= @landmark.address %></h6>
 
@@ -14,20 +13,34 @@
 
       <h4><%= @landmark.description %></h4>
 
-      <p> <strong>Criteria:</strong>
-        <%= @landmark.criteria %></p>
+      <% if !@landmark.website.nil? %>
+        <p><%= link_to @landmark.website, "http://#{@landmark.website}", :target => "_blank" %></p>
+      <% end %>
 
-  </div>
-  <div class="flow_r">
-    <div id="map2" data-landmark-id="<%= @landmark.id%>">Google Map will appear here...</div>
-  </div>
-</div>
+  <div class="star-rating starinline" data-score= <%= @avg_rating %> ></div>
+   <em><%= "#{@star_ratings.length} reviews"%></em>
+ </div>
+
+ <div class="flow_r">
+   <div id="map2" data-landmark-id="<%= @landmark.id%>">Google Map will appear here...</div>
+ </div>
+
+ </div>
+
 
 <% if current_user %>
-  <h3>Review this landmark!</h3>
-  <%= render 'reviews/form' %>
+
+    <% if user_signed_in? && @landmark.user_id != current_user.id  %>
+    <h3>Review this landmark!</h3>
+    <%= render 'star_ratings/form' %>
+    <% end %>
+    <% if current_user.id != @landmark.user_id %>
+      <%= render 'reviews/form' %>
+    <% end %>
 <% end %>
 <%= render 'favorite_form' if user_signed_in? %>
+
+
 
   <h3><strong>Reviews:
     <% if !user_signed_in? %>
@@ -35,22 +48,43 @@
     <% end %>
   </strong></h3>
     <table class="table table-hover">
-      <% @landmark.reviews.each do |review| %>
-      <tr>
-        <td>
-          <!-- posting all reviews for that landmark -->
-          <h4><%= review.user.email %> <small><%=review.user.created_at.strftime("%d %b %Y")%></small></h4>
-            <%= review.text %>
-            <!-- you can delete your own reviews if logged in -->
-            <% if current_user && current_user.id == review.user.id %>
-              <%= link_to 'Delete review', review, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-        </td>
-      </tr>
-    <% end %>
+      <% if @landmark.reviews.count == 0 %>
+        <em><h5>No reviews yet</h5></em>
+      <% else %>
+        <% @landmark.reviews.each do |review| %>
+        <tr>
+          <td>
+            <!-- posting all reviews for that landmark -->
+            <h4><%= review.user.email %> <small><%=review.user.created_at.strftime("%d %b %Y")%></small></h4>
+              <%= review.text %>
+              <!-- you can delete your own reviews if logged in -->
+              <% if current_user && current_user.id == review.user.id %>
+                <%= link_to 'Delete review', review, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+          </td>
+        </tr>
+        <% end %>
+    <% end%>
     </table>
 
 <%= link_to 'Back', landmarks_path %>
 
 <hr>
 <!-- you can only add reviews if signed in -->
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>
+
+<script>
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'star_rating[rating]'
+  });
+</script>

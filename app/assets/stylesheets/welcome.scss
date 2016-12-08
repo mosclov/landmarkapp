@@ -74,6 +74,10 @@ html {
   display: inline;
 }
 
+.starinline {
+  display: inline;;
+}
+
 .stats {
   overflow: auto;
   margin-top: 0;
@@ -101,6 +105,35 @@ html {
   float: right;
 }
 
+
+#stars {
+  display: inline;
+}
+
+.starbutton {
+  display: inline;
+}
+
 footer {
   text-align: center;
+}
+//
+// #radius_button {
+//   margin-left: 200px;
+//   }
+//
+// #zipcode {
+//   width: 185px;
+//   margin-left: 13px;
+// }
+//
+// #radius_form {
+//
+// }
+#search_button1, #search_button2 {
+  margin-left: 10px;
+}
+
+#zipcode, #search_button2 {
+  margin-top: 15px;
 }

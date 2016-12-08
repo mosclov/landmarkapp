@@ -2,8 +2,9 @@ class User < ActiveRecord::Base
     # added has many favorites
     has_many :favorites
     has_many :favorited, through: :favorites, source: :landmark
+    has_many :star_ratings
     has_many :landmarks
-    has_many :reviews
+    has_many :reviews, dependent: :destroy
     has_many :active_relationships, class_name:  "Relationship",
                                     foreign_key: "follower_id",
                                     dependent:   :destroy
@@ -16,6 +17,15 @@ class User < ActiveRecord::Base
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
+
+
+  def feed
+    following_ids_subselect = "SELECT followed_id FROM relationships
+                               WHERE  follower_id = :user_id"
+    Review.where("user_id IN (#{following_ids_subselect})
+                     OR user_id = :user_id", user_id: id)
+  end
+
 
    def follow(other_user)
      active_relationships.create(followed_id: other_user.id)
@@ -52,6 +62,7 @@ class User < ActiveRecord::Base
     end
   end
 
+<<<<<<< HEAD
   # Follows a user.
   def add_favorite(landmark)
     favorites.create(landmark_id: landmark.id)
@@ -65,5 +76,7 @@ class User < ActiveRecord::Base
   def favorited?(landmark)
     favorited.include?(landmark)
   end
+=======
+>>>>>>> master
 
 end
