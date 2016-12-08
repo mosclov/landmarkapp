@@ -2,8 +2,8 @@
 // #login_body, #signup_body {
 //   background-size: contain;
 // }
-.form {
-
+.devise_header {
+  font-family: 'Questrial', sans-serif;
 }
 
 .login_box, .sign_up_box {
@@ -26,8 +26,9 @@
   // margin-left: 300px;
   // padding-bottom: 12px;
   // padding-top: 1px;
-  border-style: inset;
+  border-style: solid;
   border-width: medium;
+  border-color: grey;
 }
 .sign_up_button {
   padding-top: 0px;
