@@ -3,8 +3,8 @@
   <div class="col-md-4">
       <h1><%= @landmark.name %></h1>
       <% if user_signed_in? %>
-        <small>Uploaded by:
-        <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a></small><br>
+        <small>Go to
+        <a href="/users/<%= @landmark.user.id %>"> <%= @landmark.user.email %></a>'s profile.</small><br>
       <% end %>
       <h6><%= @landmark.address %></h6>
 
