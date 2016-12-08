@@ -19,23 +19,25 @@
 <div class="row">
   <div class="col-sm-12">
     <br>
+
       <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active"><a href="#profile" role="tab" data-toggle="tab">Favorites</a></li>
         <% if current_user == @user %>
-        <li role="presentation" class="active"><a href="#social_feed" role="tab" data-toggle="tab">Review Feed</a></li>
+        <li role="presentation"><a href="#social_feed" role="tab" data-toggle="tab">Review Feed</a></li>
         <% end %>
         <% if current_user == @user %>
         <li role="presentation"><a href="#index" role="tab" data-toggle="tab">Landmarks</a></li>
         <% else %>
         <li role="presentation" class="active"><a href="#index" role="tab" data-toggle="tab">Landmarks</a></li>
         <% end %>
-        <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">Favorites</a></li>
         <% if current_user == @user %>
         <li role="presentation"><a href="#createLandmark" role="tab" data-toggle="tab">Create New Landmark!</a></li>
         <% end %>
       </ul>
+
       <div class="tab-content">
         <% if current_user == @user %>
-        <div role="tabpanel" class="tab-pane in active" id="social_feed">
+        <div role="tabpanel" class="tab-pane" id="social_feed">
           <%= render 'shared/feed' %>
         </div>
         <% end %>
@@ -66,7 +68,7 @@
             <% end %>
           </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="profile">
+        <div role="tabpanel" class="tab-pane in active" id="profile">
           <div class="list-group">
             <% @user.favorites.each do |favorite| %>
             <a href="/landmarks/<%= favorite.landmark.id.to_s %>" class="list-group-item list-group-item-action clearfix">

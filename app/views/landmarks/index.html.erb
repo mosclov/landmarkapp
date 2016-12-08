@@ -16,16 +16,21 @@
       <div class="col-md-4 giveMeEllipsis">
         <%= landmark.description %>
       </div>
-      <% if !current_user.favorited?(landmark) %>
-        <form action="/favorites/create_from_listing" method="post" class="btn">
-          <input type="hidden" name="landmark_id" value="<%= landmark.id.to_s %>">
-          <input type="submit" value="Favorite">
-        </form>
-      <% elsif current_user.favorited?(landmark) %>
-        <form action="/favorites/unfavorite_from_listing" method="post" class="btn">
-          <input type="hidden" name="landmark_id" value="<%= landmark.id.to_s %>">
-          <input type="submit" value="Unfavorite">
-        </form>
+      <!-- Show favourite or unfavorite buttons next to a landmark ONLY IF a user is signed in -->
+      <% if user_signed_in? %>
+      <!-- If the landmark has not been favorited by the user, show the favorite button-->
+        <% if !current_user.favorited?(landmark) %>
+          <form action="/favorites/create_from_listing" method="post" class="btn">
+            <input type="hidden" name="landmark_id" value="<%= landmark.id.to_s %>">
+            <input type="submit" value="Favorite">
+          </form>
+          <!-- If the landmark has been favorited by the user, show the unfavorite button-->
+        <% elsif current_user.favorited?(landmark) %>
+          <form action="/favorites/unfavorite_from_listing" method="post" class="btn">
+            <input type="hidden" name="landmark_id" value="<%= landmark.id.to_s %>">
+            <input type="submit" value="Unfavorite">
+          </form>
+        <% end %>
       <% end %>
     </div>
   </a>
