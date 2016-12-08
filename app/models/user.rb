@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
     end
   end
 
-<<<<<<< HEAD
+
   # Follows a user.
   def add_favorite(landmark)
     favorites.create(landmark_id: landmark.id)
@@ -76,7 +76,6 @@ class User < ActiveRecord::Base
   def favorited?(landmark)
     favorited.include?(landmark)
   end
-=======
->>>>>>> master
+
 
 end
