@@ -10,12 +10,12 @@ class SearchController < ApplicationController
       #ALSO, if there are no landmarks within ten miles of that zip
       if @landmarks.length == 0
         #redirect to root and alert the user.
-        flash[:alert] = "There are no landmarks in your area yet!"
+        flash[:notice] = "There are no landmarks in your area yet!"
         redirect_to '/'
       end #end of landmark count if
     #otherwise, if the user DID NOT input a zipcode
     else
-      flash[:alert] = "There are no landmarks in your area yet!"
+      flash[:notice] = "There are no landmarks in your area yet!"
       redirect_to '/'
     end #end of zipcode existence if
 
