@@ -19,7 +19,6 @@ RSpec.feature "Favorites", type: :feature do
         fill_in "landmark_name", with: "Test Landmark"
         fill_in "landmark_description", with: "Landmark description"
         fill_in "landmark_address", with: "92101"
-        fill_in "landmark_criteria", with: "Test criteria"
         attach_file "landmark_image", Rails.root + "app/assets/images/silverwing.jpeg"
         click_on "Create Landmark"
         expect(page).to have_content("Landmark was successfully created.")
@@ -28,9 +27,9 @@ RSpec.feature "Favorites", type: :feature do
 
       Then "I can favorite / Unfavorite from the landmark page" do
         click_button("Favorite")
-        page.should have_no_content("Favorite")
+        expect(page).to_not have_content("Favorite")
         click_button("Unfavorite")
-        page.should have_no_content("Unfavorite")
+        expect(page).to_not have_content("Unfavorite")
       end
 
 
@@ -39,19 +38,20 @@ RSpec.feature "Favorites", type: :feature do
         expect(page).to have_content("Listing Landmarks")
         expect(page).to have_content("Test Landmark")
         click_button("Favorite")
-        page.should have_no_content("Favorite")
         click_button("Unfavorite")
-        page.should have_no_content("Unfavorite")
+        click_button("Favorite")
       end
 
       Then "I can favorite / Unfavorite from myprofile page" do
-      click_link "myProfile"
-      expect(page).to have_content("Welcome a@a.com")
-      click_link("Favorites")
-      expect(page).to have_content("Empty for now")
-      # TODO Missing implementation of landmarks favorited and ability to
-      # favorite / Unfavorite.
+        click_link "myProfile"
+        expect(page).to have_content("Welcome a@a.com")
+        expect(page).to have_content("Test Landmark")
       end
+
+      And "I can unfavorite that landmark as well" do
+        click_on "Unfavorite"
+      end
+
     end #steps
   end #context
 end # end of rspec

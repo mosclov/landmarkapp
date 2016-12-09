@@ -35,16 +35,13 @@ RSpec.feature "myProfile", type: :feature do
         click_link "myProfile"
         expect(page).to have_content("Cafe Chloe")
       end
-      Then "I can click on the Favoties tab" do
+      Then "I can click on the Favorites tab" do
         click_link "Favorites"
-        expect(page).to have_content("Empty for now")
-        # Note: the "Favorties" tab content only has "Empty for now" since functionality
-        # to see the users favorite landmarks has not been implemented.
         click_link("Sign Out")
         expect(page).to have_content("Welcome!")
       end
     end #steps
   end #context
 
-  
+
 end # end of rspec

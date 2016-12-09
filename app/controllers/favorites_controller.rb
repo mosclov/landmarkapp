@@ -38,7 +38,7 @@ class FavoritesController < ApplicationController
     @current_user = current_user
     @unfavs = Favorite.where(landmark_id: params[:landmark_id], user: current_user)
     @unfavs.destroy_all
-    redirect_to "/users/#{@current_user.id}#fav_tab"
+    redirect_to "/users/#{@current_user.id}"
     # redirect_to user_path(current_user.id)
   end
 

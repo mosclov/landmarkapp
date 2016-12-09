@@ -85,9 +85,9 @@
                 </div>
 
 
-                  <form action="/favorites/unfavorite_from_profile" method="post" class="btn">
+                  <form action="/favorites/unfavorite_from_profile" method="post" >
                     <input type="hidden" name="landmark_id" value="<%= favorite.landmark.id.to_s %>">
-                    <input type="submit" value="Unfavorite">
+                    <input type="submit" value="Unfavorite" id="favs" class="btn btn-warning">
                   </form>
 
               </div>
