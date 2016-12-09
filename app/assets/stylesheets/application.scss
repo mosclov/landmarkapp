@@ -2,6 +2,7 @@
  @import "bootstrap";
  @import "welcome";
  @import "users";
+ @import "landmarks";
 
  #gpin {
    height: 50px;
@@ -55,4 +56,8 @@ td {
 
 #image {
   align-content: center;
+}
+
+#favs {
+  margin-left: 450px;
 }
