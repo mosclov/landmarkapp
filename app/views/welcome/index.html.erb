@@ -1,10 +1,11 @@
+<body id="homebody">
 
-<h1>Welcome!</h1>
 
 
-<p>
-  Welcome to The Landmark Locator, your one stop shop for FUN!! Here you can find interesting places to go and things to do based on location and various amenities.
-</p>
+<h3 id="welcometosite">
+  Welcome to LandMarked, your one stop shop for fun!<br> Here you can share, follow, and review your favorite landmarks.
+</h3>
+<hr>
 
 
 
@@ -54,7 +55,7 @@
 
       <tbody>
        <% @landmarks.each do |landmark| %>
-         <tr>
+         <tr id="hover">
            <td>
              <a href="/landmarks/<%= landmark.id.to_s %>" >
                <%= landmark.name %>
@@ -102,3 +103,4 @@
     scoreName: 'star_rating[rating]'
   });
 </script>
+</body>
