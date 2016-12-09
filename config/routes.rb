@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  post '/favorites/create'
+  post '/favorites/create_from_listing'
+  post '/favorites/unfavorite'
+  post '/favorites/unfavorite_from_listing'
+  post '/favorites/unfavorite_from_profile'
+
+  # get 'favorites/favorite'
+  #
+  # get 'favorites/unfavorite'
+
   resources :reviews
 
     get 'landmarks/search_results'
@@ -23,11 +33,14 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    collection do
+      get :favorited
+    end
   end
 
   root 'welcome#index'
   resources :relationships,       only: [:create, :destroy]
-
+  resources :favorites,       only: [:create, :destroy]
   get 'welcome/about'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

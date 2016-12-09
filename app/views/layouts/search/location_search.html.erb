@@ -14,7 +14,7 @@
             <tr>
               <th>Name</th>
               <th>Address</th>
-              <th>Rating</th> 
+              <th>Rating</th>
             </tr>
           </thead>
 
@@ -53,7 +53,7 @@
 
 <script>
     $('.star-rating').raty({
-      path: '/assets/',
+      path: '/public/ratyrate',
       readOnly: true,
       score: function() {
             return $(this).attr('data-score');
@@ -63,7 +63,7 @@
 
 <script>
   $('#star-rating').raty({
-    path: '/assets/',
+    path: 'public/ratyrate',
     scoreName: 'star_rating[rating]'
   });
 </script>
