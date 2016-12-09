@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    acts_as_follower
     # added has many favorites
     has_many :favorites
     has_many :favorited, through: :favorites, source: :landmark
@@ -63,6 +64,8 @@ class User < ActiveRecord::Base
   end
 
 
+<<<<<<< HEAD
+=======
   # Follows a user.
   def add_favorite(landmark)
     favorites.create(landmark_id: landmark.id)
@@ -76,6 +79,7 @@ class User < ActiveRecord::Base
   def favorited?(landmark)
     favorited.include?(landmark)
   end
+>>>>>>> master
 
 
 end

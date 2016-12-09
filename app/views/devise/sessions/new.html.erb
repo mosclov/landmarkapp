@@ -1,31 +1,34 @@
-<!-- <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Paul_Guillemin.jpg" alt="" /> -->
+<body id="login_body">
 
 
-  <!-- <%=image_tag("app/assets/images/BalboaPark.JPG", alt: "pic", id: "pic")%> -->
-
-<div id="sign_in" class="container">
+<div id="sign_in" class="container-fluid">
 
 
   <div class="row">
 
-    <div class="col-md-1">
+    <div class="col-md-3">
 
     </div>
+    <!-- <div class="col-md-4">
+
+    </div> -->
+    <div class="login_box">
 
 
-    <div id="login_block" class="col-md-2">
-      <h2>Log In</h2>
+    <div id="login_block" class="col-md-7">
+      <h2 class="devise_header">Log In</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true %>
+        <div class="email_login">
+          <%= f.label :email  %> <br/>
+          <%= f.email_field :email, autofocus: true, size: 23 %>
         </div>
 
-        <div class="field">
+        <div class="password_login">
           <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "off" %>
+          <%= f.password_field :password, autocomplete: "off", size: 23 %>
         </div>
+
 
         <% if devise_mapping.rememberable? -%>
           <div class="field">
@@ -34,30 +37,28 @@
           </div>
         <% end -%>
 
-        <div class="actions">
+
+        <div class="login_btn">
           <%= f.submit "Log In" %>
         </div>
       <% end %>
-
+      <div class="facebook2">
       <%= render "devise/shared/links" %>
+      </div>
+    </div> <!--end login block-->
 
-    </div>
-    <div class="col-md-3">
-
-    </div>
-
+  </div> <!--close box-->
     <div class="col-md-2">
 
     </div>
 
-    <div class="col-md-4">
 
-    </div>
 
 
   </div> <!--row-->
 
 </div> <!--container-->
+</body>
 
 
 <!-- <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %> -->

@@ -1,4 +1,5 @@
 class Landmark < ActiveRecord::Base
+  acts_as_followable
   has_many :star_ratings
   has_many :reviews, dependent: :destroy
   scope :stars, -> { order(star_ratings_count: :desc).where("star_ratings_count > ?", 0) }

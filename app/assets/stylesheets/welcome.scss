@@ -1,3 +1,8 @@
+#homebody {
+  background-image: url("gradient2.jpg");
+  background-size: contain;
+
+}
 #map {
   height: 500px;
   width: 470px;
@@ -19,7 +24,11 @@
   width: auto; display:inline;
 }
 
-tr:hover {
+#welcometosite {
+  text-align: center;
+}
+
+#hover:hover {
    background: #F8F8FF;
 }
 td a {
