@@ -25,7 +25,7 @@ function loadAndCreateSearchGmap() {
     $.ajax({
       dataType: 'json',
       url: '/landmarks/map_locations?zipcode=' + landmarkZipCode,
-      method: 'GET',
+      method: 'get',
       success: function(dataFromServer) {
         searchCreateGmap(dataFromServer);
 

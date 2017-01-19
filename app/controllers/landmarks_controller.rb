@@ -9,7 +9,7 @@ class LandmarksController < ApplicationController
 
   def map_locations
     #if the user has entered a zipcode
-    if !params[:zipcode].nil?
+    if params[:zipcode].present?
 
       zipcode = params[:zipcode]
       #find all landmarks whose address has this zipcode and display them on the search page map
