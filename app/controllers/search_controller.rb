@@ -2,7 +2,7 @@ class SearchController < ApplicationController
 
   def location_search
     #if the user has typed in a zipcode
-    if !params[:zipcode].nil?
+    if params[:zipcode].present?
       #created this variable because @zipcode is used somewhere else
       @zipcode = params[:zipcode]
       #uses geocoder gem to find all landmarks within 10 miles of the given zipcode
